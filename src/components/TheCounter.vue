@@ -1,22 +1,26 @@
 <template>
-  <div>
-    <h4>Counter</h4>
-
-    <div id="counter">
-
-      <CounterNumber v-for="(num, index) in number"
-        :key="index"
-        :number="parseInt(num)"
-        v-scroll-reveal="{
-          origin: 'top',
-          delay: index*800,
-          distance: '0px',
-          rotate: {x: num*36},
-          opacity: null,
-          duration: 2000}"
-      />
-
+  <div class="counter">
+    <div class="dateLabel"
+      v-for="(tag, index) in dateTag"
+      :key="index"
+    >
+      <label :for="tag">{{tag}}</label>
+      
+      <div class="counterNumbers" :id="tag">
+        <CounterNumber v-for="dateNumber in dateNumbers[index]"
+          :key="dateNumber"
+          :number="parseInt(dateNumber)"
+          v-scroll-reveal="{
+            origin: 'top',
+            delay: index*800,
+            distance: '0px',
+            rotate: {x: dateNumber*36},
+            opacity: null,
+            duration: 2000}"
+        />
+      </div>
     </div>
+
   </div>
 </template>
 
@@ -28,32 +32,82 @@ export default {
     CounterNumber,
   },
   props: {
-    number: {
-      type: Array,
+    date: {
+      type: String,
       required: true,
     }
+  },
+  data() {
+    return {
+      dateNumbers: this.DateDifferenceArray(this.date),
+      dateTag: ['Jahre', 'Monate', 'Tage'],
+    };
+  },
+  methods: {
+    DateDifferenceArray(DateString) {
+      let insetDate = new Date(DateString);
+      let currentDate = new Date();
+
+      let JJ = currentDate.getFullYear() - insetDate.getFullYear() - 1;
+      let MM = (12 - insetDate.getMonth()) + currentDate.getMonth();
+      // let MM = ((12 - insetDate.getMonth()) + currentDate.getMonth() - 12);
+      let DD = (31 - insetDate.getDate()) + currentDate.getDate();
+        if( DD > 31 ) {
+          DD = DD - 31;
+        } else {
+          MM = MM - 1;
+        }
+      let DateArray = [JJ, MM, DD];
+
+      // change to standard norm
+      for (let index=0; index < DateArray.length; index++) {
+        DateArray[index] =  String( Math.abs( DateArray[index] ) ).padStart(2, '0');
+      }
+
+      // split in separate numbers
+      // this.dateNumbersSplit = DateArray.join('').split('');
+      return DateArray;
+    },
   },
 };
 </script>
 
 
 <style lang="scss">
-#counter {
-  position: relative;
+.counter {
   display: flex;
-  width: 290px;
-  height: 72px;
+  justify-content: center;
 
-  background: #213239;
-  border-radius: 0.3em;
-  color: #c0af9b;
-  font-family: Helvetica, sans-serif;
-  font-size: 42px;
-  font-weight: bold;
+  .dateLabel {
+    font-family: Helvetica, sans-serif;
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-align: center;
+  }
 
-  overflow: hidden;
-  border-style: solid;
-  border-width: 0.2em 0.4em;
-  border-color: #213239;
+  .counterNumbers {
+    position: relative;
+    display: flex;
+    width: 2em;
+    height: 72px;
+
+    background: #213239;
+    color: #c0af9b;
+    font-family: Helvetica, sans-serif;
+    font-size: 42px;
+    font-weight: bold;
+
+    overflow: hidden;
+    border-style: solid;
+    border-width: 0.2em 0.4em;
+    border-color: #213239;
+  }
+
+  :first-of-type .counterNumbers {
+    border-radius: .3em 0 0 .3em;
+  }
+  :last-of-type .counterNumbers {
+    border-radius: 0 .3em .3em 0;
+  }
 }
 </style>

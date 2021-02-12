@@ -126,16 +126,7 @@ export default {
   mixins: [ElementDistance, ElementAnimation],
   props: ["src", "alt"],
   methods: {
-    // handleScroll(event) {
-    //   if( window.pageYOffset > 650 ) {
-    //     this.isScrolled = true;
-    //   } else {
-    //     this.isScrolled = false;
-    //   }
-    // },
-    onScroll(e) {
-      // this.windowTop = e.target.documentElement.scrollTop;
-
+    onScroll() {
       this.DistanceCalculate(this.$el);
       this.AnimateDistanceCalculate();
     },

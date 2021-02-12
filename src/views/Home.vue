@@ -35,20 +35,32 @@
       <article>
         <div class="balancing">
           <div>
-            <h3>Mein Ausgleich</h3>
+            <h2>Mein Ausgleich</h2>
             <p>
               <span>
                 In meiner Freizeit bin ich sportlich sehr aktiv und betreibe Parkour/Freerunning, was mir die Möglichkeit bietet,
                 meinen Sportlichen Ausgleich zu finden.
               </span>
               <span>
-                Im Zuge dessen betreue ich seit 2013 verschiedene Projekte und Prozesse für Kinder- Erwchsene,
+                Im Zuge dessen betreue ich seit 2013 verschiedene Projekte und Prozesse für Kinder- Erwachsene,
                 um ihnen einen sicheren Raum für den Sport zu bieten.
               </span>
             </p>
           </div>
 
-          <TheCounter :number="DateDifferenceArray('2014-08-14')" />
+          <div>
+            <h3>Verletzungsrisiko</h3>
+            <div class="risk">
+              <p>
+                <span>
+                  Da in diesem Zusammenhang die Frage nach dem Verletzungsrisiko sehr häufig gestellt wird, möchte ich sie mit einem Unfallfreicounter beantworten.
+                  <!-- Da spätestenz jetzt die Frage nach dem Verletzungsrisiko im Raum steht, möchte ich sie mit einem Unfallfreicounter beantworten. -->
+                </span>
+              </p>
+              <TheCounter :date="'2014-08-14'" />
+            </div>
+          </div>
+
         </div>
 
         <Picture :src="'beam.jpg'" :alt="'MyFace'" :animation='true' />
@@ -140,29 +152,14 @@ export default {
     };
   },
   methods: {
-    DateDifferenceArray(DateString) {
-      // https://www.timeanddate.de/datum/zeitspanne-ergebnis?d1=04&m1=11&y1=1995&d2=31&m2=8&y2=2020
-      // https://www.it-swarm.dev/de/javascript/differenz-monaten-zwischen-zwei-datumsangaben-javascript/968235315/
-      let date1 = new Date(DateString);
-      let date2 = new Date();
-      let JJ = date2.getFullYear() - date1.getFullYear();
-      // let MM = (12 - date1.getMonth()) + date2.getMonth();
-      let MM = ((12 - date1.getMonth()) + date2.getMonth() - 12);
-      let DD = (31 - date1.getDate()) + date2.getDate();
-        if( DD > 31 ) {
-          DD = DD - 31;
-        } else {
-          MM = MM - 1;
-        }
-      let DateArray = [JJ, MM, DD];
+    // handleScroll(event) {
+    //   if( window.pageYOffset > 650 ) {
+    //     this.isScrolled = true;
+    //   } else {
+    //     this.isScrolled = false;
+    //   }
+    // },
 
-      for (let index=0; index < DateArray.length; index++) {
-        DateArray[index] =  String( Math.abs( DateArray[index] ) ).padStart(2, '0');
-      }
-
-      DateArray = DateArray.join('').split('');
-      return DateArray;
-    },
     // onScroll(e) {
     //   this.windowTop = e.target.documentElement.scrollTop;
     // },
@@ -219,6 +216,13 @@ section {
       display: flex;
       flex-direction: column;
       justify-content: space-evenly;
+
+      .risk {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+      }
     }
 
     span {
