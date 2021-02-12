@@ -1,7 +1,7 @@
 <template>
   <div>
-    <a href="#app">
-      <div class="icon-wrapper" @click="scrollToTop($event)">
+    <a href="#app" @click="scrollToTop($event)">
+      <div class="icon-wrapper">
         <i class="icon-animation icon-up" />
       </div>
     </a>
@@ -41,26 +41,6 @@ export default {
 }
 .icon-wrapper:hover .icon-animation {
   animation: fromBottomToTopBouncy 0.3s forwards;
-}
-
-.icon-animation-loop {
-  animation: AnimationLoop 2s infinite ease-in-out;
-  animation-delay: 3.8s;
-  opacity: 0;
-}
-
-@keyframes AnimationLoop {
-  0% {
-      transform: translateY(100%);
-      opacity: 1;
-  }
-  50% {
-      transform: translateY(70%);
-  }
-  70% {
-      transform: translateY(-20%);
-      opacity: 0;
-  }
 }
 
 @keyframes fromBottomToTop {

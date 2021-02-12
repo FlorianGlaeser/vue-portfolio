@@ -35,19 +35,7 @@
       </span>
     </div>
   
-    <a href="#about" class="icon-wrapper">
-      <div @click="scrollToTop($event)"
-        v-scroll-reveal.reset="{
-            origin: 'bottom',
-            delay: 3000,
-            distance: '40px',
-            opacity: 0,
-            duration: 1000}"
-      >
-        <i class="icon-animation-loop icon-up" />
-        <i class="icon-animation icon-up" />
-      </div>
-    </a>
+    <TheScrollBottom class="icon-position" />
 
     <!-- <div /> -->
 
@@ -55,7 +43,12 @@
 </template>
 
 <script>
+import TheScrollBottom from '@/components/TheScrollBottom';
+
 export default {
+  components: {
+    TheScrollBottom,
+  },
   mounted() {
 
     // var ctx = document.getElementById('canvas').getContext('2d');
@@ -367,7 +360,7 @@ export default {
   justify-content: center;
   align-items: center;
 
-  .icon-wrapper {
+  .icon-position {
     bottom: 10vh;
     position: absolute;
     transform: rotate(180deg);
