@@ -72,6 +72,8 @@ const ElementAnimation = {
         } else {
           this.animationSettings.scrollDirection = false;
         }
+
+        this.AnimateDistanceCalculate();
       }
     },
   },
@@ -113,11 +115,9 @@ const ElementAnimation = {
       }
     },
     AnimateDistanceCalculate() {
-      if( this.animation ) {
-        this.MidwaySteps();
-        this.normallySteps();
-        this.animationDistance = (this.animationSettings.animationStep * -400);
-      }
+      this.MidwaySteps();
+      this.normallySteps();
+      this.animationDistance = (this.animationSettings.animationStep * -400);
     },
   },
 };
@@ -128,7 +128,6 @@ export default {
   methods: {
     onScroll() {
       this.DistanceCalculate(this.$el);
-      this.AnimateDistanceCalculate();
     },
   },
   mounted() {

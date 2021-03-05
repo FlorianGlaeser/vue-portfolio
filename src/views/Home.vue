@@ -6,7 +6,7 @@
     <section id="about">
       <article class="my">
         <div class="info">
-          <h3>Über mich</h3>
+          <h2>Über mich</h2>
           <p>
             <span>
               Mein Name ist Florian Gläser.
@@ -49,7 +49,7 @@
           </div>
 
           <div>
-            <h3>Verletzungsrisiko</h3>
+            <h2>Verletzungsrisiko</h2>
             <div class="risk">
               <p>
                 <span>
@@ -69,39 +69,45 @@
 
     <section id="skills">
       <header>
-        <h3>Fähigkeiten</h3>
+        <h2>Fähigkeiten</h2>
       </header>
-      <article id="wrapper-skills">
+      <article class="wrapper-skills">
         <div>
-          <h4>Planung</h4>
-          <p>Konzeption von Projekten</p>
-          <p>Figma zur grundlegenden Struktur</p>
-          <p>präzise Screendesigns</p>
+          <h3>Planung</h3>
+          <ul>
+            <li>Konzeption von Projekten</li>
+            <li>Figma zur grundlegenden Struktur</li>
+            <li>präzise Screendesigns</li>
+          </ul>
+        </div>
+
+        <div class="line" :class="[isVisible ? 'active' : '']">
+          <h3>Frontend</h3>
+          <ul>
+            <li>übersichtliche HTML Strukturen</li>
+            <li>Animationen und Features in nativem JavaScript, JQuery und GreenSocket</li>
+            <li>performante Lösungen für (progressive) Web Apps in VueJS</li>
+          </ul>
         </div>
 
         <div>
-          <h4>Frontend</h4>
-          <p>übersichtliche HTML Strukturen</p>
-          <p>Animationen und Features in nativem JavaScript, JQuery und GreenSocket</p>
-          <p>performante Lösungen für (progressive) Web Apps in VueJS</p>
-        </div>
-
-        <div>
-          <h4>Backend</h4>
-          <p>umfangreiche Funktionalität in PHP</p>
-          <p>Verwendung von MySQL Datenbanken</p>
-          <p>effizientes Arbeiten mit Laravel</p>
+          <h3>Backend</h3>
+          <ul>
+            <li>umfangreiche Funktionalität in PHP</li>
+            <li>Verwendung von MySQL Datenbanken</li>
+            <li>effizientes Arbeiten mit Laravel</li>
+          </ul>
         </div>
       </article>
     </section>
 
     <section id="work">
       <header>
-        <h3>Referenzen</h3>
+        <h2>Referenzen</h2>
       </header>
       <article>
         <div class="reference">
-          <h4>Title</h4>
+          <h3>Title</h3>
           <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Provident ex quia voluptatem! Ratione inventore mollitia laborum.</p>
         </div>
 
@@ -111,21 +117,11 @@
 
 
     <section id="contact">
-      <svg preserveAspectRatio="none" viewBox="0 0 100 102" height="75" width="100%" version="1.1" xmlns="http://www.w3.org/2000/svg" class="svgcolor-light">
-        <path d="M0 0 L50 100 L100 0 Z" fill="white" stroke="white"></path>
-      </svg>
       <header>
-        <h3>Contact</h3>
+        <h2>Contact</h2>
       </header>
       <article>
-        <div>
-          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Provident ex quia voluptatem! Ratione inventore mollitia laborum.</p>
-          <span>Name...</span>
-        </div>
-        <div>
-          <input type="text" placeholder="Name" />
-          <input type="button" value="Next" />
-        </div>
+        <TheContact />
       </article>
     </section>
   </div>
@@ -136,6 +132,7 @@ import TheHeader from "@/components/TheHeader";
 import TheMenu from "@/components/TheMenu";
 import TheCounter from '@/components/TheCounter';
 import Picture from '@/components/Picture';
+import TheContact from '@/components/TheContact';
 
 export default {
   name: "Home",
@@ -144,14 +141,26 @@ export default {
     TheMenu,
     TheCounter,
     Picture,
+    TheContact,
   },
   data() {
     return {
       isScrolled: false,
       windowTop: 0,
+      isVisible: false,
     };
   },
   methods: {
+    onScroll(e) {
+      let Element = e.target.documentElement.getElementsByClassName('line')[0];
+      let ElementTop = Element.offsetTop;
+      let WindowHeight = window.innerHeight / 2;
+
+      if( window.pageYOffset > ElementTop - WindowHeight && !this.isVisible ) {
+        this.isVisible = true;
+      }
+    },
+
     // handleScroll(event) {
     //   if( window.pageYOffset > 650 ) {
     //     this.isScrolled = true;
@@ -164,12 +173,12 @@ export default {
     //   this.windowTop = e.target.documentElement.scrollTop;
     // },
   },
-  // mounted() {
-  //   window.addEventListener("scroll", this.onScroll);
-  // },
-  // beforeDestroy() {
-  //   window.removeEventListener("scroll", this.onScroll);
-  // },
+  mounted() {
+    window.addEventListener("scroll", this.onScroll);
+  },
+  beforeDestroy() {
+    window.removeEventListener("scroll", this.onScroll);
+  },
 };
 </script>
 
@@ -181,17 +190,25 @@ export default {
 section {
   header {
     text-align: center;
-  }
-
-  &section:nth-of-type(5) svg {
-    left: 0;
-    position: absolute;
-    top: 0;
+    padding: 6rem 0 1rem 0;
   }
 
   &#contact, &#skills  {
     color: #a2abb7;
     background-color: #48525e;
+
+    h2 {
+      color: white;
+    }
+  }
+
+  &#contact::before {
+    content: "";
+    display: inline-block;
+    width: 100%;
+    height: 4.6rem;
+    background-color: white;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
   }
 
   article {
@@ -225,6 +242,81 @@ section {
       }
     }
 
+    &.wrapper-skills {
+      align-items: start;
+      padding: 3rem 0;
+
+      display: grid;
+      grid-template-columns: repeat(3, minmax(33.3%, 33.3%));
+
+      div {
+        // min-height: 400px;
+        padding: 2rem 0;
+
+        h3 {
+          text-align: center;
+          margin-bottom: 2rem;
+        }
+        ul {
+          padding: 0 4rem;
+          list-style-type: none;
+
+          li {
+            margin-bottom: 1.3rem;
+            position: relative;
+
+            &::before {
+              content: "";
+              display: inline-block;
+              width: 25px;
+              height: 1px;
+              margin-right: 10px;
+              background-color: white;
+              position: absolute;
+              top: 50%;
+              left: -35px;
+            }
+          }
+        }
+      }
+
+      .line {
+        position: relative;
+
+        &.active {
+          &::after, &::before {
+            content: '';
+            height: 100%;
+            width: 4px;
+            position: absolute;
+            top: 0;
+            background-color: #a2abb7;
+            animation: AnimationLine 1.3s ease;
+          }
+          &::before {
+            left: 0;
+          }
+          &::after {
+            right: 0;
+          }
+
+          @keyframes AnimationLine {
+            0% {
+              height: 0%;
+              opacity: 0;
+            }
+            50% {
+              opacity: 1;
+            }
+            100% {
+              height: 100%;
+            }
+          }
+        }
+      }
+
+    }
+
     span {
       display: block;
       margin-bottom: 10px;
@@ -234,4 +326,5 @@ section {
 
 // code info:
 // https://codesandbox.io/s/8klx37rzp9?fontsize=14&module=/src/App.vue&file=/src/App.vue:32-93
+// https://www.timeanddate.de/datum/zeitspanne
 </style>

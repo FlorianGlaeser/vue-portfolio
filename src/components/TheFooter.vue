@@ -23,14 +23,21 @@
             <li>
               <a href>
                 <div class="icon-wrapper">
-                  <i>Xn</i>
+                  <i>Git</i>
                 </div>
               </a>
             </li>
             <li>
               <a href>
                 <div class="icon-wrapper">
-                  <i>Xn</i>
+                  <i>In</i>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href>
+                <div class="icon-wrapper">
+                  <i>XING</i>
                 </div>
               </a>
             </li>
