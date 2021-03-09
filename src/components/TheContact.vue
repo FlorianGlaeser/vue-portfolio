@@ -314,7 +314,10 @@ export default {
       return false;
     },
     checkFormValidated() {
-      return ( this.form[this.sequence].value.match(this.form[this.sequence].validated) );
+      if( this.loopCounter == 0 ) {
+        return ( this.form[this.sequence].value.match(this.form[this.sequence].validated) );
+      }
+      return false;
     },
     getTimerDelay(element) {
       if( this.timer_is_on ) {// is timer run then check old status from button

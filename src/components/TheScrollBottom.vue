@@ -19,7 +19,6 @@ export default {
   methods: {
     scrollToBottom(event, target) {
       event.preventDefault();
-      // console.log( this.$refs["myid"] );
 
       this.intervalId = setInterval(() => {
         let Pointer = window.pageYOffset;

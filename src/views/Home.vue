@@ -183,10 +183,6 @@ export default {
 </script>
 
 <style lang="scss">
-// .home {
-//   position: relative;
-//   z-index: 50;
-// }
 section {
   header {
     text-align: center;
@@ -208,7 +204,7 @@ section {
     width: 100%;
     height: 4.6rem;
     background-color: white;
-    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    clip-path: polygon(0 -1%, 100% -1%, 50% 100%);
   }
 
   article {
@@ -225,7 +221,6 @@ section {
     .info, .balancing, .reference {
       display: inline-block;
       width: 700px;
-      min-width: 500px;
     }
 
     .balancing {
@@ -250,7 +245,6 @@ section {
       grid-template-columns: repeat(3, minmax(33.3%, 33.3%));
 
       div {
-        // min-height: 400px;
         padding: 2rem 0;
 
         h3 {
