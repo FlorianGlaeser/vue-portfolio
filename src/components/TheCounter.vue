@@ -81,8 +81,8 @@ export default {
   .dateLabel {
     font-family: Helvetica, sans-serif;
     font-size: 1.4rem;
-    font-weight: bold;
     text-align: center;
+    text-transform: uppercase;
   }
 
   .counterNumbers {

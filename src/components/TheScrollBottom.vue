@@ -1,12 +1,12 @@
 <template>
-  <a href="#about" @click="scrollToBottom($event)">
-    <div class="icon-wrapper"
+  <a href="#about" title="Mehr Entdecken" @click="scrollToBottom($event)">
+    <div id="wrapper-bottom-icon" class="icon-wrapper"
       v-scroll-reveal.reset="{
-          origin: 'bottom',
-          delay: 3000,
-          distance: '40px',
-          opacity: 0,
-          duration: 1000}"
+        origin: 'bottom',
+        delay: 3000,
+        distance: '40px',
+        opacity: 0,
+        duration: 1000}"
     >
       <i class="icon-animation-loop icon-up" />
       <i class="icon-animation icon-up" />
@@ -42,23 +42,32 @@ export default {
 </script>
 
 <style lang="scss">
-.icon-animation-loop {
-  animation: AnimationLoop 2s infinite ease-in-out;
-  animation-delay: 3.8s;
-  opacity: 0;
-}
+#wrapper-bottom-icon {
+  color: white;
+  font-size: 2em;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  overflow: hidden;
 
-@keyframes AnimationLoop {
-  0% {
-      transform: translateY(100%);
-      opacity: 1;
+  .icon-animation-loop {
+    animation: AnimationLoop 2s infinite ease-in-out;
+    animation-delay: 3.8s;
+    opacity: 0;
   }
-  50% {
-      transform: translateY(70%);
-  }
-  70% {
-      transform: translateY(-20%);
-      opacity: 0;
+
+  @keyframes AnimationLoop {
+    0% {
+        transform: translateY(100%);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(70%);
+    }
+    70% {
+        transform: translateY(-20%);
+        opacity: 0;
+    }
   }
 }
 </style>

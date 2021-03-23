@@ -1,8 +1,11 @@
 <template>
   <div class="contact">
     <div>
-      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Provident ex quia voluptatem! Ratione inventore mollitia laborum.</p>
-      <span>Name...</span>
+      <p>
+        <!-- <span>Lass uns loslegen.</span> -->
+        <span>Schön, von Dir(Ihnen) zu hören.</span>
+        <span>Wenn Sie Fragen haben oder einfach nur Hallo sagen möchten, setzen Sie sich gern mit mir in Verbindung und kontaktieren Sie mich.</span>
+      </p>
     </div>
     <div>
       <form method="post" autocomplete="off" action="/">
@@ -22,8 +25,8 @@
                 <label :class="[isVisible ? 'typed' : '']" :for="tag.name">{{ tag.label }}</label>
             </div>
             <i :class="tag.icon" />
-            <input :type="tag.type" :name="tag.name" ref="someFocus" tabindex="-1" v-model="tag.value" v-if="tag.tag == 'input'" @keydown="setCheckTimer()">
-            <textarea :name="tag.name" ref="someFocus" tabindex="-1" @keydown="textareaRow($event.target), setCheckTimer()" v-model="tag.value" v-else-if="tag.tag == 'textarea'"></textarea>
+            <input :type="tag.type" :name="tag.name" ref="someFocus" maxlength="100" tabindex="-1" v-model="tag.value" v-if="tag.tag == 'input'" @keydown="setCheckTimer()">
+            <textarea :name="tag.name" ref="someFocus" maxlength="900" tabindex="-1" @keydown="textareaRow($event.target), setCheckTimer()" v-model="tag.value" v-else-if="tag.tag == 'textarea'"></textarea>
           </div>
         </div>
 
@@ -51,7 +54,7 @@ export default {
           label: 'Fill with your name',
           value: '',
           crumbsWidth: 0,
-          icon: 'icon-smile',
+          icon: 'icon-person',
         },
         { tag: 'input',
           type: 'text',
@@ -66,7 +69,7 @@ export default {
           label: 'Now your email address',
           value: '',
           crumbsWidth: 0,
-          icon: 'icon-grin',
+          icon: 'icon-email',
         },
         { tag: 'textarea',
           name: 'message',
@@ -75,7 +78,7 @@ export default {
           label: 'Now write your awesome message',
           value: '',
           crumbsWidth: 0,
-          icon: 'icon-up',
+          icon: 'icon-write',
         },
       ],
       sequence: 0,
@@ -123,7 +126,7 @@ export default {
       let labelLength = oldElement.label.split("").length;
       let maxLength = Math.max(labelLength, oldLength);
 
-      this.valueLoop(oldIndex, oldElement, oldLabel, oldValue, oldLength, newIndex, newElement, newValue, newLength, maxLength);
+      this.valueLoopOld(oldIndex, oldElement, oldLabel, oldValue, oldLength, newIndex, newElement, newValue, newLength, maxLength);
     },
     labelLoop(oldIndex, oldElement, oldLabel, oldValue, oldLength, newIndex, newElement, newValue, newLength, maxLength) {
       if( this.loopCounter != maxLength && this.hasChecket ) {
@@ -171,10 +174,10 @@ export default {
 
         this.loopCounter = 0;
         this.hasChecket = 0;
-        this.valueLoop2(oldIndex, oldElement, oldLabel, oldValue, oldLength, newIndex, newElement, newValue, newLength, maxLength);
+        this.valueLoopNew(oldIndex, oldElement, oldLabel, oldValue, oldLength, newIndex, newElement, newValue, newLength, maxLength);
       }
     },
-    valueLoop(oldIndex, oldElement, oldLabel, oldValue, oldLength, newIndex, newElement, newValue, newLength, maxLength) {
+    valueLoopOld(oldIndex, oldElement, oldLabel, oldValue, oldLength, newIndex, newElement, newValue, newLength, maxLength) {
       if( this.loopCounter != (oldLength -1) && oldValue ) { // value slice to 1 && value exist
         oldElement.value = oldElement.value.slice (0, -1);
 
@@ -184,7 +187,7 @@ export default {
 
         this.loopCounter++;
         setTimeout(() =>
-          this.valueLoop(oldIndex, oldElement, oldLabel, oldValue, oldLength, newIndex, newElement, newValue, newLength, maxLength)
+          this.valueLoopOld(oldIndex, oldElement, oldLabel, oldValue, oldLength, newIndex, newElement, newValue, newLength, maxLength)
         , 20);
       } else {
         this.$refs.someFocus[oldIndex].style.color = 'transparent';
@@ -193,7 +196,7 @@ export default {
         this.labelLoop(oldIndex, oldElement, oldLabel, oldValue, oldLength, newIndex, newElement, newValue, newLength, maxLength);
       }
     },
-    valueLoop2(oldIndex, oldElement, oldLabel, oldValue, oldLength, newIndex, newElement, newValue, newLength, maxLength) {
+    valueLoopNew(oldIndex, oldElement, oldLabel, oldValue, oldLength, newIndex, newElement, newValue, newLength, maxLength) {
       if( this.loopCounter != newLength ) {
 
         if( !newValue ) { // no value exist
@@ -208,7 +211,7 @@ export default {
 
         this.loopCounter++;
         setTimeout(() =>
-          this.valueLoop2(oldIndex, oldElement, oldLabel, oldValue, oldLength, newIndex, newElement, newValue, newLength, maxLength)
+          this.valueLoopNew(oldIndex, oldElement, oldLabel, oldValue, oldLength, newIndex, newElement, newValue, newLength, maxLength)
         , 20);
       } else {
         this.loopCounter = 0;
@@ -369,19 +372,22 @@ export default {
     height: 50px;
     font-weight: 700;
     font-size: 18px;
-    // font-family: Lato,Helvetica,Arial,sans-serif;
 
     .stack {
       position: absolute;
       top: 0;
       left: 0;
       height: 100%;
-      width: 80%;
+      width: 100%;
       // border-bottom: 1px solid #797979;
       // background-color: #2f2f2f;
       border-bottom: 1px solid #a2abb7;
       background-color: #48525e;
       cursor: pointer;
+
+      @media only screen and (min-width: 415px) {
+        width: 80%;
+      }
 
       &.active {
         z-index: 120;
@@ -410,6 +416,7 @@ export default {
         display: flex;
         align-items: center;
         max-height: 50px;
+        font-size: 24px;
       }
       
       .label {
@@ -429,6 +436,11 @@ export default {
           text-overflow: ellipsis;
           max-width: 300px;
           width: 0; // typed animation
+          font-size: 1rem;
+
+          @media only screen and (min-width: 455px) {
+            font-size: 1.12rem;
+          }
 
           &.typed {
             animation: typing .4s 0s steps(30, end) forwards;
@@ -453,10 +465,10 @@ export default {
         position: absolute;
         top: 0;
         left: 0;
-        width: 100%;
+        
         height: 100%;
         font-family: 'Roboto', Arial, sans-serif;
-        font-size: 1.12rem;
+        
         // font-size: 18px;
         font-weight: 700;
         // color: #797979;
@@ -465,6 +477,17 @@ export default {
         line-height: 100%;
         padding: 0 40px;
         background-color: transparent;
+
+        width: 80%;
+        font-size: 1rem;
+
+        @media only screen and (min-width: 455px) {
+          font-size: 1.12rem;
+        }
+
+        @media only screen and (min-width: 415px) {
+          width: 100%;
+        }
       }
       textarea {
         height: 70%;

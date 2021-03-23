@@ -13,32 +13,26 @@
       <div id="footer-table">
         <div id="footer-wrapper-left">
           <label for="mail">E-Mail</label>
-          <a id="mail" href="mailto:kontakt@glaeserflorian.de">kontakt@glaeserflorian.de</a>
+          <a id="mail" href="mailto:kontakt@glaeserflorian.de" title="E-Mail">kontakt@glaeserflorian.de</a>
           <label for="tel">Phone</label>
-          <span id="tel">01522 35 89 4 22</span>
+          <a href="tel:015223589422" id="tel" title="Telefon">01522 35 89 4 22</a>
         </div>
 
         <div id="footer-wrapper-center">
           <ul>
             <li>
-              <a href>
-                <div class="icon-wrapper">
-                  <i>Git</i>
-                </div>
+              <a href="/" title="GitHub" class="icon-wrapper" target="_blank">
+                <i class="icon-github" />
               </a>
             </li>
             <li>
-              <a href>
-                <div class="icon-wrapper">
-                  <i>In</i>
-                </div>
+              <a href="/" title="LinkedIn" class="icon-wrapper" target="_blank">
+                <i class="icon-linkedin" />
               </a>
             </li>
             <li>
-              <a href>
-                <div class="icon-wrapper">
-                  <i>XING</i>
-                </div>
+              <a href="/" title="Xing" class="icon-wrapper" target="_blank">
+                <i class="icon-xing" />
               </a>
             </li>
           </ul>
@@ -54,13 +48,13 @@
     <div id="footer-bottom">
       <ul>
         <li>
-          <router-link :to="{name: 'About'}">Impressum</router-link>
+          <router-link to="/impressum" title="Impressum">Impressum</router-link>
         </li>
         <li>
-          <router-link to="/about">Datenschutz</router-link>
+          <router-link to="/datenschutz" title="Datenschutz">Datenschutz</router-link>
         </li>
       </ul>
-      <span>Copyright © 2020 glaeserflorian</span>
+      <span>Copyright © {{ new Date().getFullYear() }} glaeserflorian</span>
     </div>
   </footer>
 </template>
@@ -105,9 +99,13 @@ footer {
         position: absolute;
         top: 50%;
         display: block;
-        width: 30%;
+        width: 20%;
         border-bottom: 5px solid rgba(0, 0, 0, 0.25);
         content: "";
+
+        @media only screen and (min-width: 850px) {
+          width: 30%;
+        }
       }
       &::after {
           right: 0;
@@ -119,16 +117,24 @@ footer {
 
     #footer-table {
       display: flex;
-      justify-content: space-between;
-      align-items: stretch;
       flex-wrap: wrap;
-
-      font-family: "Quicksand", sans-serif;
       font-size: 18px;
       opacity: 0.6;
 
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+
+      @media only screen and (min-width: 850px) {
+        align-items: stretch;
+        flex-direction: row;
+      }
+
       #footer-wrapper-left {
-        width: 20%;
+        @media only screen and (min-width: 850px) {
+          width: 20%;
+        }
+
         label {
           font-size: 16px;
           opacity: 0.6;
@@ -143,29 +149,43 @@ footer {
       }
 
       #footer-wrapper-center {
-        width: 60%;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: space-around;
+        margin: 4rem 0;
+
+        @media only screen and (min-width: 850px) {
+          width: 60%;
+          margin: 0;
+        }
 
         ul {
           display: flex;
           list-style: none;
           li {
             margin-right: 10px;
+
             &:last-of-type {
               margin-right: 0;
+            
+            }
+            i {
+              font-family: 'Roboto', Arial, sans-serif;
+              font-style: normal;
             }
           }
         }
       }
 
       #footer-wrapper-right {
-        width: 20%;
         display: flex;
         justify-content: flex-end;
         align-items: center;
+
+        @media only screen and (min-width: 850px) {
+          width: 20%;
+        }
       }
 
       .icon-wrapper {
@@ -195,8 +215,19 @@ footer {
     padding: 0 50px;
     font-size: 18px;
 
+    flex-direction: column;
+
+    @media only screen and (min-width: 630px) {
+      flex-direction: row;
+    }
+
     span {
       opacity: 0.6;
+      margin-bottom: 1.5rem;
+
+      @media only screen and (min-width: 630px) {
+        margin-bottom: 0;
+      }
     }
 
     ul {

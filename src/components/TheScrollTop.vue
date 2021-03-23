@@ -1,6 +1,6 @@
 <template>
   <div>
-    <a href="#app" @click="scrollToTop($event)">
+    <a href="#app" title="Nach Oben" @click="scrollToTop($event)">
       <div class="icon-wrapper">
         <i class="icon-animation icon-up" />
       </div>

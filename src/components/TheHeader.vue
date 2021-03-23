@@ -1,44 +1,38 @@
 <template>
   <header id="wrapper-header">
-    
     <canvas id="rect" />
 
-    <div>
+    <div class="content-header">
       <h1 class="btn"
-          v-scroll-reveal="{
-              delay: 700,
-              distance: '0px',
-              opacity: 0,
-              duration: 0}"
+        v-scroll-reveal="{
+          delay: 700,
+          distance: '0px',
+          opacity: 0,
+          duration: 0}"
       >
-        <span class="text">Webdesign</span>
-        <span class="text">&</span>
-        <!-- <hr> -->
+        <span class="text and">Webdesign </span>
         <span class="text">Development</span>
       </h1>
       
-      <span class="header-me"
-            v-scroll-reveal="{
-              origin: 'left',
-              delay: 100,
-              distance: '900px',
-              opacity: null,
-              duration: 2000}"
-        ><p class="text"
+      <p class="header-me"
+        v-scroll-reveal="{
+          origin: 'left',
+          delay: 100,
+          distance: '900px',
+          opacity: null,
+          duration: 2000}"
+        ><strong class="text"
           v-scroll-reveal="{
             origin: 'right',
             delay: 100,
             distance: '900px',
             opacity: null,
             duration: 2000}"
-        >Florian Gläser</p>
-      </span>
+        >Florian Gläser</strong>
+      </p>
     </div>
   
     <TheScrollBottom class="icon-position" />
-
-    <!-- <div /> -->
-
   </header>
 </template>
 
@@ -124,7 +118,7 @@ export default {
 
     function draw() {
       var time = new Date();
-      let region = new Path2D();
+      // let region = new Path2D();
 
       // clear canvas
       ctx.clearRect(0, 0, vw, vh);
@@ -308,22 +302,15 @@ export default {
       ctx.closePath();
       ctx.fill();
       ctx.restore();
-      
-      // window.requestAnimationFrame(draw);
     }
-    window.requestAnimationFrame(draw);
 
-    // var i = 1;
-    function myLoop() {
+    function headerLoop() {
       setTimeout(function() {
         window.requestAnimationFrame(draw);
-        // i++;
-        // if (i < 10) {
-          myLoop();
-        // }
+          headerLoop();
       }, 100)
     }
-    myLoop(); 
+    headerLoop();
 
 
     // ctx.closePath();
@@ -354,11 +341,15 @@ export default {
   height: 100vh;
   width: 100%;
   overflow: hidden;
-
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  canvas {
+    height: 100%;
+    width: 100%;
+  }
 
   .icon-position {
     bottom: 10vh;
@@ -366,12 +357,7 @@ export default {
     transform: rotate(180deg);
   }
 
-  canvas {
-    height: 100%;
-    width: 100%;
-  }
-
-  div {
+  .content-header {
     color: white;
     font-size: 2em;
     font-weight: bold;
@@ -381,23 +367,32 @@ export default {
     flex-wrap: wrap;
     position: absolute;
     overflow: hidden;
-
     letter-spacing: 0.1em;
     line-height: 2em;
     text-transform: uppercase;
+
+    .text {
+      transform: scaleY(1.6);
+    }
 
     h1 {
       display: flex;
       flex-direction: column;
       align-items: center;
       font-size: 1em;
-      
-      // border-style: solid;
-      // border-width: 0.2em 0.2em;
-      // border-color: white;
-
       padding: 52px 62px;
       overflow: hidden;
+
+      .and {
+        margin: -0.2rem 0 2.8rem;
+        &::after {
+          content: '';
+          display: block;
+          border-bottom: 2px solid white;
+          margin: -5px auto;
+          width: 64%;
+        }
+      }
     }
 
     .header-me {
@@ -408,134 +403,153 @@ export default {
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 22px 36px;
+      padding: 24px 41px;
       overflow: hidden;
     }
   }
 
-
-  // @import url(https://fonts.googleapis.com/css?family=Six+Caps);
-  .text {
-    transform: scaleY(1.6);
-
-    // font-family: 'Six Caps', sans-serif;
-    // font-weight: 300;
-    // text-transform: uppercase;
-    // letter-spacing: 0.05em;
-    // font-size: 3em;
-  }
-
-  .strich {
-    border-bottom: 2px solid white;
-  }
-  hr { 
-    width: 50%;
-    height: 1px; 
-    margin: 0 auto;
-    color: white;
-    background: white;
-    margin: 10px 0 20px 0;
-}
+  // @keyframes blur {
+  //   from {
+  //     filter: blur(0px);
+  //   }
+  //   to {
+  //     filter: blur(5px);
+  //   }
+  // }
 
 
-      // div {
-      //   width: 300px;
-      //   height: 300px;
-      //   background: repeating-linear-gradient(red, orange 50px);
-      //   clip-path: polygon(50% 0%, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0% 50%, 40% 40%);
-      //   animation: 4s poly infinite alternate ease-in-out;
-      //   margin: 10px auto;
-      // }
 
-      @keyframes poly {
-        from {
-          clip-path: polygon(50% 0%, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0% 50%, 40% 40%);
-        }
+  // Mixin for shadow button with block sliding up
+  @mixin btn-border-slide($color, $borderWidth, $time, $delay) {
+    background-repeat: no-repeat;
+    background-image:   linear-gradient(to right, $color 100%, $color 100%),
+                        linear-gradient(to bottom, $color 100%, $color 100%),
+                        linear-gradient(to right, $color 100%, $color 100%),
+                        linear-gradient(to bottom, $color 100%, $color 100%);
+    background-size:    100% $borderWidth,
+                        $borderWidth 0%,
+                        100% $borderWidth,
+                        $borderWidth 100%;
+    background-position:    0 0,
+                            100% 0,
+                            100% 100%,
+                            0 100%;
+    animation: bg $time $delay linear backwards;
 
-        to {
-          clip-path: polygon(50% 30%, 100% 0%, 70% 50%, 100% 100%, 50% 70%, 0% 100%, 30% 50%, 0% 0%);
-        }
+    @keyframes bg {
+      0% {
+          background-size:    0 $borderWidth,
+                              $borderWidth 0,
+                              0 $borderWidth,
+                              $borderWidth 0;
       }
-
-      @keyframes blur {
-        from {
-          filter: blur(0px);
-        }
-
-        to {
-          filter: blur(5px);
-        }
+      15% {
+          background-size:    0% $borderWidth,
+                              $borderWidth 0%,
+                              100% $borderWidth,
+                              $borderWidth 0;
       }
-
-
-
-// Mixin for shadow button with block sliding up
-@mixin btn-border-slide($color, $borderWidth, $time, $delay) {
-  background-repeat: no-repeat;
-  background-image:   linear-gradient(to right, $color 100%, $color 100%),
-                      linear-gradient(to bottom, $color 100%, $color 100%),
-                      linear-gradient(to right, $color 100%, $color 100%),
-                      linear-gradient(to bottom, $color 100%, $color 100%);
-  background-size:    100% $borderWidth,
-                      $borderWidth 0%,
-                      100% $borderWidth,
-                      $borderWidth 100%;
-  background-position:    0 0,
-                          100% 0,
-                          100% 100%,
-                          0 100%;
-  animation: bg $time $delay linear backwards;
-
-  @keyframes bg {
-    0% {
-        background-size:    0 $borderWidth,
-                            $borderWidth 0,
-                            0 $borderWidth,
-                            $borderWidth 0;
-    }
-    15% {
-        background-size:    0% $borderWidth,
-                            $borderWidth 0%,
-                            100% $borderWidth,
-                            $borderWidth 0;
-    }
-    25% {
-        background-size:    0% $borderWidth,
-                            $borderWidth 0%,
-                            100% $borderWidth,
-                            $borderWidth 100%;
-    }
-    30% {
-        background-size:    25% $borderWidth,
-                            $borderWidth 0%,
-                            100% $borderWidth,
-                            $borderWidth 100%;
-    }
-    50% {
-        background-size:    65% $borderWidth,
-                            $borderWidth 0%,
-                            100% $borderWidth,
-                            $borderWidth 100%;
-    }
-    70% {
-        background-size:    90% $borderWidth,
-                            $borderWidth 0%,
-                            100% $borderWidth,
-                            $borderWidth 100%;
-    }
-    100% {
-        background-size:    100% $borderWidth,
-                            $borderWidth 0%,
-                            100% $borderWidth,
-                            $borderWidth 100%;
+      25% {
+          background-size:    0% $borderWidth,
+                              $borderWidth 0%,
+                              100% $borderWidth,
+                              $borderWidth 100%;
+      }
+      30% {
+          background-size:    25% $borderWidth,
+                              $borderWidth 0%,
+                              100% $borderWidth,
+                              $borderWidth 100%;
+      }
+      50% {
+          background-size:    65% $borderWidth,
+                              $borderWidth 0%,
+                              100% $borderWidth,
+                              $borderWidth 100%;
+      }
+      70% {
+          background-size:    90% $borderWidth,
+                              $borderWidth 0%,
+                              100% $borderWidth,
+                              $borderWidth 100%;
+      }
+      100% {
+          background-size:    100% $borderWidth,
+                              $borderWidth 0%,
+                              100% $borderWidth,
+                              $borderWidth 100%;
+      }
     }
   }
-}
 
-.btn {
-  @include btn-border-slide(white, 0.2em, 2s, 1.6s);
-  // https://freefrontend.com/css-border-animations/
-}
+  @mixin btn-border-slide-mobile($color, $borderWidth, $time, $delay) {
+    background-repeat: no-repeat;
+    background-image:   linear-gradient(to right, $color 100%, $color 100%),
+                        linear-gradient(to bottom, $color 100%, $color 100%),
+                        linear-gradient(to right, $color 100%, $color 100%),
+                        linear-gradient(to bottom, $color 100%, $color 100%);
+    background-size:    100% $borderWidth,
+                        $borderWidth 100%,
+                        0% $borderWidth,
+                        $borderWidth 100%;
+    background-position:    0 0,
+                            100% 0,
+                            100% 100%,
+                            0 100%;
+    animation: bg $time $delay linear backwards;
 
+    @keyframes bg {
+      0% {
+          background-size:    0 $borderWidth,
+                              $borderWidth 0,
+                              0 $borderWidth,
+                              $borderWidth 0;
+      }
+      15% {
+          background-size:    0% $borderWidth,
+                              $borderWidth 0%,
+                              0% $borderWidth,
+                              $borderWidth 100%;
+      }
+      25% {
+          background-size:    100% $borderWidth,
+                              $borderWidth 0%,
+                              0% $borderWidth,
+                              $borderWidth 100%;
+      }
+      30% {
+          background-size:    100% $borderWidth,
+                              $borderWidth 25%,
+                              0% $borderWidth,
+                              $borderWidth 100%;
+      }
+      50% {
+          background-size:    100% $borderWidth,
+                              $borderWidth 65%,
+                              0% $borderWidth,
+                              $borderWidth 100%;
+      }
+      70% {
+          background-size:    100% $borderWidth,
+                              $borderWidth 90%,
+                              0% $borderWidth,
+                              $borderWidth 100%;
+      }
+      100% {
+          background-size:    100% $borderWidth,
+                              $borderWidth 100%,
+                              0% $borderWidth,
+                              $borderWidth 100%;
+      }
+    }
+  }
+
+  .btn {
+    @include btn-border-slide-mobile(white, 0.2em, 2s, 1.6s);
+
+    @media only screen and (min-width: 782px) {
+      @include btn-border-slide(white, 0.2em, 2s, 1.6s);
+    }
+  }
 }
 </style>

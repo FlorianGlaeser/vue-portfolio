@@ -2,31 +2,31 @@
   <div id="page-navigation" :class="[isFixed ? 'activ' : '']">
     <nav :class="[isVisible ? 'mobile' : '']">
 
-      <div class="second-manu">
+      <div class="menu-list-mobile">
         <div class="burger" @click="setVisible($event)">
           <div class="burger-inner"></div>
         </div>
       </div>
 
-      <ul ref="links">
-        <li>
-          <!-- <router-link to="/">Home</router-link> -->
-          <a href="/#app" @click="scrollToDiv($event, 'app')">Home</a>
-        </li>
-        <li>
-          <!-- <router-link to="/about">About</router-link> -->
-          <a href="/#about" @click="scrollToDiv($event, 'about')">About</a>
-        </li>
-        <li>
-          <a href="/#skills" @click="scrollToDiv($event, 'skills')">Skills</a>
-        </li>
-        <li>
-          <a href="/#work" @click="scrollToDiv($event, 'work')">Work</a>
-        </li>
-        <li>
-          <a href="/#contact" @click="scrollToDiv($event, 'contact')">Contact</a>
-        </li>
-      </ul>
+      <div class="wapper-page menu-list">
+        <ul ref="links" class="container-page">
+          <li>
+            <a href="/#app" @click="scrollToDiv($event, 'app')">Home</a>
+          </li>
+          <li>
+            <a href="/#about" @click="scrollToDiv($event, 'about')">About</a>
+          </li>
+          <li>
+            <a href="/#skills" @click="scrollToDiv($event, 'skills')">Skills</a>
+          </li>
+          <li>
+            <a href="/#work" @click="scrollToDiv($event, 'work')">Work</a>
+          </li>
+          <li>
+            <a href="/#contact" @click="scrollToDiv($event, 'contact')">Contact</a>
+          </li>
+        </ul>
+      </div>
 
       <div class="nav-border" ref="navBorder"></div>
     </nav>
@@ -95,7 +95,10 @@ export default {
 
         if( this.isFixed ) { // smooth back animation
           this.$refs.navBorder.style.height = '4px';
-          this.$refs.navBorder.style.opacity = '0';
+          
+          setTimeout(() =>
+            this.$refs.navBorder.style.opacity = '0'
+        , 300);
         }
       } else {
         window.document.body.style.overflowY = 'hidden';
@@ -129,67 +132,98 @@ export default {
       }
     },
     scrollToDiv(event, target) {
-      event.preventDefault();
+      if( event ) { event.preventDefault(); }
 
-      if( this.isNotScroll ) {
-        this.isNotScroll = false;
-        let Element = window.document.getElementById(target);
+      let Element = window.document.getElementById(target);
+      if( Element ) {
 
-        this.pageIntervalId = setInterval(() => {
-          let Pointer = window.pageYOffset;
-          let ElementDistance = Math.abs( Pointer - Element.offsetTop );
-          let speed = 50;
+        if( this.isNotScroll ) {
+          this.isNotScroll = false;
 
-          // speed reduce
-          if( ElementDistance < 40 ) {
-            speed = 2;
-          } else if( ElementDistance < 200 ) {
-            speed = 14;
-          } else if( ElementDistance > 1000 ) {
-            speed = 100;
-          }
+          this.pageIntervalId = setInterval(() => {
+            let Pointer = window.pageYOffset;
+            let ElementDistance = Math.abs( Pointer - Element.offsetTop );
+            let speed = 50;
 
-          if( window.pageYOffset < Element.offsetTop ) { // scroll down
-            window.scroll(0, Pointer + speed);
-          }
-          else { // scroll down
-            window.scroll(0, Pointer - speed);
-          }
+            // speed reduce
+            if( ElementDistance < 40 ) {
+              speed = 2;
+            } else if( ElementDistance < 200 ) {
+              speed = 14;
+            } else if( ElementDistance > 1000 ) {
+              speed = 100;
+            }
 
-          if( ElementDistance < 2 ) { // scroll cancel
-            clearInterval( this.pageIntervalId );
-            window.scroll(0, Pointer - (Pointer - Element.offsetTop));
-            this.isNotScroll = true;
-          }
-        }, 20);
+            if( window.pageYOffset < Element.offsetTop ) { // scroll down
+              window.scroll(0, Pointer + speed);
+            }
+            else { // scroll down
+              window.scroll(0, Pointer - speed);
+            }
+
+            if( ElementDistance < 2 ) { // scroll cancel
+              clearInterval( this.pageIntervalId );
+              window.scroll(0, Pointer - (Pointer - Element.offsetTop));
+              this.isNotScroll = true;
+            }
+          }, 20);
+        }
+      } else {
+        if( this.$route.path != '/' ) {
+          this.$router.push('/#'+target);
+          // this.$router.push({name: 'Home', hash: '#'+target});
+        }
       }
     },
     setMenuTarget() {
-      let self = this;
-      clearTimeout(this.timer);
-      this.timer = setTimeout(function () {
+      if( this.pageCategories ) { // check target break
+        // set page Categories array for menu target
+        if( this.pageCategories.length == 0 ) {
+          let targetNames = this.$refs.links.getElementsByTagName("a");
 
-        let Pointer = window.pageYOffset;
-        let windowHeight = window.innerHeight;
-        let targetId = self.pageCategories.findIndex(el => el > (Pointer +(windowHeight/2))) -1;
-
-        if( self.pageTarget != targetId ) { // target is different
-          if( targetId < 0 ) { // pointer over pageCategories
-            targetId = self.pageCategories.length -1;
+          for (let index=0; index < targetNames.length; index++) {
+            let targetId = targetNames[index].hash.slice(1);
+            if( window.document.getElementById(targetId) != null ) { // check target id on page
+              let targetTop = window.document.getElementById(targetId).offsetTop;
+              this.pageCategories.push(targetTop);
+            }
+            else {
+              this.pageCategories = null; // break the target because of error
+              return false;
+            }
           }
-          let targets = self.$refs.links.getElementsByTagName("a");
-          targets[self.pageTarget].style.color = ''; // reset old target color
-
-          self.pageTarget = targetId; // set new target
-          let target = targets[targetId];
-          target.style.color = 'black'; // set new color
+          // set menu default color
+          targetNames[0].style.color = 'black';
         }
-      }, 200);
+
+        // find menu target and set color
+        let self = this;
+        clearTimeout(this.timer);
+        this.timer = setTimeout(function () {
+  
+          let Pointer = window.pageYOffset;
+          let windowHeight = window.innerHeight;
+          let targetId = self.pageCategories.findIndex(el => el > (Pointer +(windowHeight/2))) -1;
+  
+          if( self.pageTarget != targetId ) { // target is different
+            if( targetId < 0 ) { // pointer over pageCategories
+              targetId = self.pageCategories.length -1;
+            }
+            let targets = self.$refs.links.getElementsByTagName("a");
+            targets[self.pageTarget].style.color = ''; // reset old target color
+  
+            self.pageTarget = targetId; // set new target
+            let target = targets[targetId];
+            target.style.color = 'black'; // set new color
+          }
+        }, 200);
+      }
     },
     onScroll() {
       this.setMenuTarget();
 
       if( !this.isVisible ) {
+        // nav move out and in
         let Pointer = window.pageYOffset;
         let Element = this.$el;
         let ElementTop = Element.offsetTop;
@@ -199,13 +233,13 @@ export default {
           this.distance = Pointer;
           let nav = Element.children[0];
 
-          if( this.scrollDirection ) { // nav to down
+          if( this.scrollDirection ) { // nav move out
             if( Pointer >= ElementBottom && nav.style.transform == 'none' ) { // menu active slide when over menu height
               nav.style.transform = 'translate(0, -'+ nav.offsetHeight +'px)'; // animate nav to top
               Element.style.paddingTop = Element.clientHeight +'px'; // set nav placeholder
               this.isFixed = true;
             }
-          } else { // nav to top
+          } else { // nav move in
             if( nav.style.transform != 'none' ) {
               nav.style.transform = 'none'; // animate nav to bottom
             }
@@ -226,16 +260,14 @@ export default {
     },
   },
   mounted() {
-    // set page Categories array for menu target
-    let targetNames = this.$refs.links.getElementsByTagName("a");
+    window.addEventListener("scroll", this.onScroll);
 
-    for (let index=0; index < targetNames.length; index++) {
-      let targetId = targetNames[index].hash.slice(1);
-      const targetTop = window.document.getElementById(targetId).offsetTop;
-      this.pageCategories.push(targetTop);
+    // set scroll animation when switch page
+    if( this.$route.hash ) {
+      let targetId = this.$route.hash.slice(1);
+      this.isVisible = true; // reset mobile menu
+      this.scrollToDiv('', targetId);
     }
-    // set menu default color
-    targetNames[0].style.color = 'black';
 
     window.addEventListener("scroll", this.onScroll);
   },
@@ -258,7 +290,7 @@ export default {
   nav {
     box-shadow: rgb(0, 0, 0) 4px 4px 16px -8px;
     position: relative;
-    z-index: 100;
+    z-index: 999;
 
     // &::after {
     //   content: "";
@@ -268,12 +300,11 @@ export default {
     //   // background-color: red;
     // }
 
-    .second-manu {
-      display: none;
+    .menu-list-mobile {
       background-color: #48525e;
 
-      @media only screen and (max-width: 655px) {
-        display: block;
+      @media only screen and (min-width: 655px) {
+        display: none;
       }
 
       .burger {
@@ -306,34 +337,38 @@ export default {
       }
     }
 
-
-    ul {
+    .menu-list {
       background-color: #48525e;
-      list-style-type: none;
-      padding: 30px;
-      
-      @media only screen and (max-width: 655px) {
+
+      ul {
         display: none;
-      }
+        list-style-type: none;
+        padding: 30px;
+        
+        @media only screen and (min-width: 655px) {
+          display: block;
+        }
 
-      li {
-        display: inline-block;
+        li {
+          display: inline-block;
 
-        a {
-          font-size: 20px;
-          font-family: "Helvetica", sans-serif;
-          text-decoration: none;
-          color: #a2abb7;
-          padding: 25px 30px;
-          transition: all 0.2s ease-out;
-          letter-spacing: 0.05em;
+          a {
+            font-size: 20px;
+            font-family: "Helvetica", sans-serif;
+            text-decoration: none;
+            text-transform: uppercase;
+            color: #a2abb7;
+            padding: 20px;
+            transition: all 0.2s ease-out;
+            letter-spacing: 0.05em;
 
-          &:hover {
-            color: white;
-          }
+            &:hover {
+              color: white;
+            }
 
-          &.router-link-exact-active {
-            background-color: #38d39f;
+            &.router-link-exact-active {
+              background-color: #38d39f;
+            }
           }
         }
       }
@@ -344,7 +379,7 @@ export default {
       height: 4px;
       opacity: 0;
       background-color: var(--gray-light);
-      transition: all 300ms ease-in-out;
+      transition: all 300ms ease-in-out, opacity 0s;
     }
 
     &.mobile {
@@ -354,7 +389,7 @@ export default {
       width: 100vw;
       height: 100vh;
 
-      .second-manu {
+      .menu-list-mobile {
         .burger-inner {
           background-color: unset;
 

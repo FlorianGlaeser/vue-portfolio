@@ -3,6 +3,7 @@
 
     <img :src="require(`@/assets/${this.src}`)"
          :alt="`${this.alt}`"
+         :title="`${this.title}`"
          :style="{ transform: 'translate('+animationDistance+'px,'+distance+'px)' }"
     >
 
@@ -124,7 +125,7 @@ const ElementAnimation = {
 
 export default {
   mixins: [ElementDistance, ElementAnimation],
-  props: ["src", "alt"],
+  props: ["src", "alt", "title"],
   methods: {
     onScroll() {
       this.DistanceCalculate(this.$el);
