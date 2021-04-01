@@ -3,7 +3,10 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+import axios from 'axios'
 import VueScrollReveal from 'vue-scroll-reveal'
+
+window.axios = axios;
 
 Vue.use(VueScrollReveal, {
   class: 'v-scroll-reveal',

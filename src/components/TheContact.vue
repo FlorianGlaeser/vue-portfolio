@@ -25,14 +25,18 @@
                 <label :class="[isVisible ? 'typed' : '']" :for="tag.name">{{ tag.label }}</label>
             </div>
             <i :class="tag.icon" />
-            <input :type="tag.type" :name="tag.name" ref="someFocus" maxlength="100" tabindex="-1" v-model="tag.value" v-if="tag.tag == 'input'" @keydown="setCheckTimer()">
-            <textarea :name="tag.name" ref="someFocus" maxlength="900" tabindex="-1" @keydown="textareaRow($event.target), setCheckTimer()" v-model="tag.value" v-else-if="tag.tag == 'textarea'"></textarea>
+            <input :type="tag.type" :name="tag.name" ref="someFocus" maxlength="100" tabindex="-1" @keydown="setCheckTimer()" v-model="tag.value" v-if="tag.tag == 'input'">
+            <textarea :name="tag.name" ref="someFocus" maxlength="800" tabindex="-1" @keydown="textareaRow($event.target), setCheckTimer()" v-model="tag.value" v-else-if="tag.tag == 'textarea'"></textarea>
           </div>
+          <div class="messageLeange" v-if="form[sequence].tag == 'textarea'">{{ messageLeange() }}</div>
         </div>
 
         <div class="submit">
           <input type="submit" value="Next" ref="nextButton" :class="[unlockNextButton(true) ? 'enabled' : '']" @click="nextSequence($event)">
-          <input type="submit" value="Submit your message" ref="sendButton" :class="[unlockSendButton(true) ? 'enabled' : '']" @click="sendMail($event)">
+          <div class="magicButton">
+            <span class="sendProgress" ref="sendProgress" />
+            <input type="submit" value="Submit your message" ref="sendButton" :class="[unlockSendButton(true) ? 'enabled' : '']" @click="sendMail($event)">
+          </div>
         </div>
       </form>
     </div>
@@ -44,6 +48,7 @@
 export default {
   data() {
     return {
+      isSendProgress: false,
       form: [
         { tag: 'input',
           type: 'text',
@@ -60,11 +65,10 @@ export default {
           type: 'text',
           name: 'email',
           validated: RegExp( '^'+
-            '(?![.])([.]?[a-zA-Z0-9äöüÄÖÜß!\'#$%&*+/=?^_`{|}~-]){1,64}'+ // localPage
+            '(?![.])([.]?[a-zA-Z0-9äöüÄÖÜß!\'#$%&*+\/=?^_`{|}~-]){1,64}'+ // localPage
             '@'+
             '(?![.])([\.\-]?[a-zA-Z0-9äöüÄÖÜß]){1,252}[.][a-zA-Z]{2,24}'+ // domainPart
             '$' ),
-            // "[a-z0-9!'#$%&*+\/=?^_`{|}~-]+(?:\.[a-z0-9!'#$%&*+\/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-zA-Z]{2,}"+
           defaultLabel: 'Now your email address',
           label: 'Now your email address',
           value: '',
@@ -73,7 +77,7 @@ export default {
         },
         { tag: 'textarea',
           name: 'message',
-          validated: RegExp('^[a-zA-Z0-9äöüÄÖÜß!\'#$%&*+/=?^_`{|}~ ,\.\n-]{1,255}$'),
+          validated: RegExp('^[a-zA-Z0-9äöüÄÖÜß!\'#$%&*+\/=?^_`{|}~ ,\.\n-]{1,800}$'),
           defaultLabel: 'Now write your awesome message',
           label: 'Now write your awesome message',
           value: '',
@@ -84,8 +88,8 @@ export default {
       sequence: 0,
       loopCounter: 0,
       hasChecket: 0,
-      timer: null,
-      timer_is_on: false,
+      tapTimer: null,
+      tapTimer_is_on: false,
       isVisible: false,
     };
   },
@@ -104,14 +108,31 @@ export default {
       //   // }
       // }
 
-      if( this.form[oldVal].tag == 'textarea' && this.form[oldVal].value ) { // last crumb save
-        this.hasChecket++;
+      if( !this.isSendProgress ) {
+        if( this.form[oldVal].tag == 'textarea' && this.form[oldVal].value ) { // last crumb save
+          this.hasChecket++;
+        }
+        this.valueAnimation(oldVal, newVal);
+      } else {
+        this.$refs.someHeight.style.height = '50px';
+        this.removeClass(this.$refs.someActive[oldVal], "active");
+        this.addClass(this.$refs.someActive[newVal], "active");
+        this.isSendProgress = false;
       }
-
-      this.valueAnimation(oldVal, newVal);
     },
   },
   methods: {
+    messageLeange() {
+      let elementValue = this.form[this.sequence].value;
+      let limit = 800;
+      let leange = limit - elementValue.length;
+
+      if( leange < 0 ) {
+        this.form[this.sequence].value = elementValue.substring(0, limit);
+        return 0;
+      }
+      return leange;
+    },
     valueAnimation(oldIndex, newIndex) {
       let oldElement = this.form[oldIndex];
       let newElement = this.form[newIndex];
@@ -266,20 +287,100 @@ export default {
           this.hasChecket++;
           this.sequence++;
         } else {
-          this.addClass(this.$refs.someActive[this.sequence], "erro");
-          setTimeout(() => 
-            this.removeClass(this.$refs.someActive[this.sequence], "erro")
-          , 2100);
+          this.timeoutClass(this.$refs.someActive[this.sequence], "erro", 2100)
         }
       }
     },
     sendMail(event) {
       event.preventDefault();
 
-      if( this.loopCounter == 0 ) {
+      if( this.loopCounter == 0 && !this.isSendProgress ) {
         if( this.unlockSendButton() ) {
-          console.log( 'send Mail' );
+          this.isSendProgress = true;
+
+          // set status progress to wait
+          let sendButton = this.$refs.sendButton;
+          let sendProgress = this.$refs.sendProgress;
+          sendButton.value = 'wait for it ..';
+          sendButton.style.width = '189px';
+          sendButton.style.borderBottom = '0px';
+          sendProgress.style.width = '90%';
+
+          // create data stack for axios
+          var mailPackage = new Object();
+          for( let x=0; x < this.form.length; x++ ) {
+            let name = this.form[x].name;
+            mailPackage[name] = this.form[x].value;
+          }
+
+          axios.post('http://localhost:8000/sendmail.php', mailPackage)
+          .then( response => {
+            if( response.data ) {
+              let alert = response.data;
+              // set status progress to success
+              this.formStatus(sendButton, sendProgress, alert.message, alert.status);
+            } else {
+              // set status progress to error
+              this.formStatus(sendButton, sendProgress, "error!", alert.status);
+            }
+          })
+          .catch( error => {
+            // set status progress to error
+            this.formStatus(sendButton, sendProgress, "connection problem", alert.status);
+          });
         }
+      }
+    },
+    formStatus(sendButton, sendProgress, message, status) {
+      let self = this;
+
+      // status set to success or erro
+      setTimeout(function() {
+        sendButton.value = message;
+        sendProgress.style.width = '100%';
+        sendProgress.style.transitionDuration = '0s';
+
+        let alertInfo;
+        if( status === true ) {
+          alertInfo = "success";
+        } else {
+          alertInfo = "erro";
+        }
+        for( let x=0; x < self.$refs.someActive.length; x++ ) {
+          self.timeoutClass(self.$refs.someActive[x], alertInfo, 2100)
+        }
+      }, 1400);
+
+      // mail Button set to default
+      setTimeout(function() {
+        sendButton.value = 'Submit your message';
+        sendButton.style.borderBottom = '3px solid #797979';
+        sendProgress.style.width = '0%';
+        setTimeout(() =>
+          sendProgress.style.transitionDuration = '2s'
+        , 200);
+        if( status === true ) {
+          self.formReset();
+          setTimeout(() =>
+            self.sequence = 0
+          , (self.form.length * 500));
+        } else {
+          self.form[self.sequence].label = self.form[self.sequence].value;
+          self.sequence = 0;
+        }
+      }, 3100);
+    },
+    formReset() {
+      for (let x=(this.form.length -1); x >= 0; x--) {
+        let element = this.form[x];
+        let self = this;
+        setTimeout(function() {
+          self.timeoutClass(self.$refs.someName[x], "slideOut", (x * 2000));
+          setTimeout(function() {
+            element.value = '';
+            element.label = element.defaultLabel;
+          }, (x * 500));
+        }, ((self.form.length * 500) - (x * 500)));
       }
     },
     switshCrumb(index) {
@@ -295,6 +396,12 @@ export default {
     },
     toggleClass(element, name) {
       return element.classList.toggle(name);
+    },
+    timeoutClass(element, name, time) {
+      this.addClass(element, name);
+      setTimeout(() =>
+        this.removeClass(element, name)
+      , time);
     },
     unlockNextButton(delay) {
       if( this.sequence < (this.form.length -1) ) { // all before last Crumb check
@@ -323,7 +430,7 @@ export default {
       return false;
     },
     getTimerDelay(element) {
-      if( this.timer_is_on ) {// is timer run then check old status from button
+      if( this.tapTimer_is_on ) { // is tapTimer run then check old status from button
         if( element.classList == 'enabled' ) {
           return true;
         }
@@ -332,11 +439,11 @@ export default {
       return this.checkFormValidated();
     },
     setCheckTimer() {
-      this.timer_is_on = true;
+      this.tapTimer_is_on = true;
       let self = this;
-      clearTimeout(this.timer);
-      this.timer = setTimeout(function () {
-        self.timer_is_on = false;
+      clearTimeout(this.tapTimer);
+      this.tapTimer = setTimeout(function () {
+        self.tapTimer_is_on = false;
       }, 200);
     },
     onScroll() {
@@ -399,12 +506,27 @@ export default {
         .label, i, input, textarea {
           animation: Erro 2s ease;
         }
+
+        @keyframes Erro {
+          50% {
+            color: #c60202;
+            border-color: #c60202;
+          }
+        }
       }
 
-      @keyframes Erro {
-        50% {
-          color: #c60202;
-          border-color: #c60202;
+      &.success {
+        animation: Success 2s ease;
+
+        .label, i, input, textarea {
+          animation: Success 2s ease;
+        }
+
+        @keyframes Success {
+          50% {
+            color: #009688;
+            border-color: #009688;
+          }
         }
       }
 
@@ -426,8 +548,15 @@ export default {
         padding: 16px 40px;
         line-height: 1rem;
         transform-origin: 0 50% 0;
-        transition: transform .1s ease-out,background .2s ease-out,padding .1s ease-out;
-        
+        transition: transform .1s ease-out,background .2s ease-out,padding .1s ease-out,left 0s;
+        left: 0;
+
+        &.slideOut {
+          transition: opacity .4s ease-out,left .9s ease-out;
+          opacity: 0;
+          left: 100vw;
+        }
+
         label {
           cursor: pointer;
           display: inline-block;
@@ -465,10 +594,8 @@ export default {
         position: absolute;
         top: 0;
         left: 0;
-        
         height: 100%;
         font-family: 'Roboto', Arial, sans-serif;
-        
         // font-size: 18px;
         font-weight: 700;
         // color: #797979;
@@ -477,7 +604,6 @@ export default {
         line-height: 100%;
         padding: 0 40px;
         background-color: transparent;
-
         width: 80%;
         font-size: 1rem;
 
@@ -496,9 +622,24 @@ export default {
         overflow: hidden;
       }
     }
+
+    .messageLeange {
+      font-weight: 500;
+      font-size: 1.1rem;
+      position: absolute;
+      top: 106%;
+      right: 0;
+      z-index: 130;
+
+      @media only screen and (min-width: 415px) {
+        width: 27%;
+      }
+    }
   }
 
   .submit {
+    display: flex;
+
     input[type=submit], input[type=button] {
       background: #9e9e9e;
       color: #c4c4c4;
@@ -522,6 +663,27 @@ export default {
       &.disabled {
         background: #c60202;
         color: #ebf1f8;
+      }
+    }
+
+    :last-of-type input {
+      margin-right: 0;
+    }
+
+    .magicButton {
+      position: relative;
+    
+      .sendProgress {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 100%;
+        background-color: rgba(0,0,0,.2);
+        // transition: width 2s linear;
+        transition-property: width;
+        transition-duration: 2s;
+        transition-timing-function: linear;
       }
     }
   }
