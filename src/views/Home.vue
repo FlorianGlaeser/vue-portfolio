@@ -264,8 +264,8 @@ section {
   }
 
   &#contact, &#skills {
-    color: #a2abb7;
-    background-color: #48525e;
+    color: var(--font-light);
+    background-color: var(--bg-dark-blue);
 
     h2 {
       color: white;
@@ -365,14 +365,14 @@ section {
             @media only screen and (min-width: 850px) {
               &::before {
                 animation: AnimationLineHeight 1.3s ease forwards;
-                background-color: #a2abb7;
+                background-color: var(--font-light);
                 top: 0;
                 left: 0;
                 width: 4px;
               }
               &::after {
                 animation: AnimationLineHeight 1.3s ease forwards;
-                background-color: #a2abb7;
+                background-color: var(--font-light);
                 top: 0;
                 right: 0;
                 left: unset;
@@ -411,11 +411,4 @@ section {
     }
   }
 }
-
-// code info:
-// https://codesandbox.io/s/8klx37rzp9?fontsize=14&module=/src/App.vue&file=/src/App.vue:32-93
-// https://www.timeanddate.de/datum/zeitspanne
-
-// side-animation
-// https://markus.oberlehner.net/blog/vue-router-page-transitions/
 </style>

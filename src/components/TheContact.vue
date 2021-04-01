@@ -596,7 +596,6 @@ export default {
         left: 0;
         height: 100%;
         font-family: 'Roboto', Arial, sans-serif;
-        // font-size: 18px;
         font-weight: 700;
         // color: #797979;
         color: #a2abb7;

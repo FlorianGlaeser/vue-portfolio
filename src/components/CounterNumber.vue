@@ -30,7 +30,6 @@ export default {
 <style lang="scss">
 .carousel {
   position: relative;
-
   -webkit-transform-style: preserve-3d;
   -moz-transform-style: preserve-3d;
   -ms-transform-style: preserve-3d;

@@ -13,7 +13,7 @@
       <div id="footer-table">
         <div id="footer-wrapper-left">
           <label for="mail">E-Mail</label>
-          <a id="mail" href="mailto:kontakt@glaeserflorian.de" title="E-Mail">kontakt@glaeserflorian.de</a>
+          <a id="mail" href="mailto:kontakt@florianglaeser.de" title="E-Mail">kontakt@florianglaeser.de</a>
           <label for="tel">Phone</label>
           <a href="tel:015223589422" id="tel" title="Telefon">01522 35 89 4 22</a>
         </div>
@@ -21,7 +21,7 @@
         <div id="footer-wrapper-center">
           <ul>
             <li>
-              <a href="/" title="GitHub" class="icon-wrapper" target="_blank">
+              <a href="https://github.com/FlorianGlaeser" title="GitHub" class="icon-wrapper" target="_blank">
                 <i class="icon-github" />
               </a>
             </li>
@@ -31,7 +31,7 @@
               </a>
             </li>
             <li>
-              <a href="/" title="Xing" class="icon-wrapper" target="_blank">
+              <a href="https://www.xing.com/profile/Florian_Glaeser13" title="Xing" class="icon-wrapper" target="_blank">
                 <i class="icon-xing" />
               </a>
             </li>
@@ -54,7 +54,7 @@
           <router-link to="/datenschutz" title="Datenschutz">Datenschutz</router-link>
         </li>
       </ul>
-      <span>Copyright © {{ new Date().getFullYear() }} glaeserflorian</span>
+      <span>Copyright © {{ new Date().getFullYear() }} florianglaeser</span>
     </div>
   </footer>
 </template>

@@ -1,8 +1,7 @@
 :root {
-
   /** --------------- FONTS --------------- **/
-  
-  --font-default: #a2abb7; /* default [ #a2abb7 ] */
+  --font-light: #a2abb7; /* default [ #a2abb7 ] */
+  --font-dark: #2c3e50; /* default [ #2c3e50 ] */
   /* blue? #9ba4c1 */
   
   /* gray */
@@ -21,12 +20,11 @@
   /* blue */
   --blue-light: 	#0099FF; /* Links [ #0099FF ] */
   
-  
   /** --------------- BACKROUNDS --------------- **/
-  
   --bg-main:		#bbb; /* main Backround [ #bbb ] */
   
   /* dark - Backrounds */
+  --bg-light-blue: #293743;
   --bg-dark-blue: #48525e;
   
   /* light - Backrounds */
@@ -35,9 +33,7 @@
   
 }
 
-
 /** --------------- ICONS FONT --------------- **/
-
 @font-face {
   font-family: 'icons';
   src:  url('../fonts/icons.eot?8mog2c');

@@ -1,7 +1,7 @@
 <template>
-  <div class="about">
+  <div class="reference">
     <TheMenu />
-    <h1>This is an about page</h1>
+    <h1>This is an reference page</h1>
   </div>
 </template>
 

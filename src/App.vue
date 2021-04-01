@@ -41,13 +41,8 @@ body {
 }
 
 #app {
-  // font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  // font-family: 'Lato',Helvetica,Arial,sans-serif;
-  // -webkit-font-smoothing: antialiased;
-  // -moz-osx-font-smoothing: grayscale;
-
   font-family: 'Roboto', Arial, sans-serif;
-  color: #2c3e50;
+  color: var(--font-dark);
   font-size: 16px;
   font-weight: 400;
 

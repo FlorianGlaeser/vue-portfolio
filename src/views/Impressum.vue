@@ -81,7 +81,7 @@ export default {
     }
 
     h4 {
-      color: #a2abb7;
+      color: var(--font-light);
       margin: 1rem 0;
       text-transform: uppercase;
       font-size: 1.17rem;
@@ -101,7 +101,7 @@ export default {
     }
 
     a {
-      color: #2c3e50;
+      color: var(--font-dark);
     }
 
     ul {
