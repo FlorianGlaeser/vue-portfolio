@@ -7,8 +7,8 @@
       <label :for="tag">{{tag}}</label>
       
       <div class="counterNumbers" :id="tag">
-        <CounterNumber v-for="dateNumber in dateNumbers[index]"
-          :key="dateNumber"
+        <CounterNumber v-for="(dateNumber, x) in dateNumbers[index]"
+          :key="x"
           :number="parseInt(dateNumber)"
           v-scroll-reveal="{
             origin: 'top',

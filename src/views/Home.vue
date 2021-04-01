@@ -51,7 +51,7 @@
 
             <div>
               <h3>Verletzungsrisiko</h3>
-              <div class="risk">
+              <div>
                 <p>
                   <span>
                     Da in diesem Zusammenhang die Frage nach dem Verletzungsrisiko sehr häufig gestellt wird, möchte ich sie mit einem Unfallfreicounter beantworten.
@@ -205,10 +205,19 @@ section {
 
   header {
     text-align: center;
-    padding: 6rem 0 1rem 0;
+    padding-top: 6rem;
   }
 
   h2 {
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    margin-bottom: 1rem;
+    margin-top: 2rem;
     text-transform: uppercase;
     font-weight: 400;
     letter-spacing: 0.05em;
@@ -240,16 +249,12 @@ section {
     }
 
     .balancing {
-      height: 50vh;
       display: flex;
       flex-direction: column;
       justify-content: space-evenly;
 
-      .risk {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        height: 100%;
+      .counter {
+        margin-top: 2rem;
       }
     }
 
@@ -312,9 +317,7 @@ section {
         h3 {
           text-align: center;
           margin-bottom: 2rem;
-          text-transform: uppercase;
-          font-weight: 400;
-          letter-spacing: 0.05em;
+          margin-top: 0;
         }
 
         ul {
