@@ -50,7 +50,6 @@ export default {
 
       let JJ = currentDate.getFullYear() - insetDate.getFullYear() - 1;
       let MM = (12 - insetDate.getMonth()) + currentDate.getMonth();
-      // let MM = ((12 - insetDate.getMonth()) + currentDate.getMonth() - 12);
       let DD = (31 - insetDate.getDate()) + currentDate.getDate();
         if( DD > 31 ) {
           DD = DD - 31;

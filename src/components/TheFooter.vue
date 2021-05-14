@@ -73,9 +73,7 @@ export default {
 
 <style lang="scss">
 footer {
-  // background-color: #333;
   background-color: #39373a;
-  // color: rgb(245, 222, 179);
   color: wheat;
 
   a {

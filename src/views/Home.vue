@@ -13,14 +13,14 @@
                 Mein Name ist Florian Gläser.
               </span>
               <span>
-                Ich bin ein Webentwickler aus leidenschaft im (aus dem?) Leipziger Raum.
+                Ich bin ein Webentwickler aus Leidenschaft im Leipziger Raum.
               </span>
               <span>
-                Um meine Fähigkeiten zu erweitern, began ich im April 2018 ein Studium am SAE Institute Leipzig im Fachbereich Webdesign & Development.
+                Um mein Wissen zu vertiefen, begann ich im April 2018 ein Studium am SAE Institute Leipzig im Fachbereich Webdesign & Development.
                 Im September 2019 erhielt ich dann mein Diploma.
               </span>
               <span>
-                In meinem Studium habe ich mich sowohl mit den Themengebieten Konzeption/Design, Frontend-Entwicklung und Animation einer Website,
+                In meinem Studium habe ich mich sowohl mit den Themengebieten Konzeption/ Design, Frontend-Entwicklung und Animation einer Website,
                 als auch der Backend-Entwicklung in Zusammenhang mit Datenbanken beschäftigt.
               </span>
               <span>
@@ -30,42 +30,36 @@
             </p>
           </div>
 
-          <Picture :src="'Florian_Glaeser.jpg'" :alt="'Ein Porträt von Florian Gläser'" :title="'Portree von Florian Gläser'" />
+          <Picture class="spacing" :src="'Florian_Glaeser.jpg'" :alt="'Ein Porträt von Florian Gläser'" :title="'Portree von Florian Gläser'" />
         </article>
 
         <article>
           <div class="balancing gap">
-            <div>
-              <h2>Mein Ausgleich</h2>
-              <p>
-                <span>
-                  In meiner Freizeit bin ich sportlich sehr aktiv und betreibe Parkour/Freerunning, was mir die Möglichkeit bietet,
-                  meinen Sportlichen Ausgleich zu finden.
-                </span>
-                <span>
-                  Im Zuge dessen betreue ich seit 2013 verschiedene Projekte und Prozesse für Kinder- Erwachsene,
-                  um ihnen einen sicheren Raum für den Sport zu bieten.
-                </span>
-              </p>
-            </div>
-
-            <div>
-              <h3>Verletzungsrisiko</h3>
-              <div>
-                <p>
-                  <span>
-                    Da in diesem Zusammenhang die Frage nach dem Verletzungsrisiko sehr häufig gestellt wird, möchte ich sie mit einem Unfallfreicounter beantworten.
-                    <!-- Da spätestenz jetzt die Frage nach dem Verletzungsrisiko im Raum steht, möchte ich sie mit einem Unfallfreicounter beantworten. -->
-                  </span>
-                  <span>Unverletzt seit</span>
-                </p>
-                <TheCounter :date="'2014-08-14'" />
-              </div>
-            </div>
-
+            <h2>Mein Ausgleich</h2>
+            <p>
+              <span>
+                In meiner Freizeit bin ich sportlich sehr aktiv und betreibe Parkour/Freerunning, was mir die Möglichkeit bietet,
+                meinen Ausgleich zu finden.
+              </span>
+              <span>
+                Im Zuge dessen betreue ich seit 2013 verschiedene Projekte und Prozesse für Kinder und Jugendliche,
+                um ihnen einen sicheren Raum für den Sport zu bieten.
+              </span>
+            </p>
           </div>
 
-          <Picture :src="'beam.jpg'" :alt="'Backflip Animation von Florian Gläser'" :title="'Backflip Animation Florian Gläser'" :animation='true' />
+          <Picture class="spacing" :src="'beam.jpg'" :alt="'Backflip Animation von Florian Gläser'" :title="'Backflip Animation Florian Gläser'" :animation='true' />
+
+          <aside class="balancing">
+            <h3>Verletzungsrisiko</h3>
+              <p>
+                <span>
+                  Da in diesem Zusammenhang die Frage nach dem Verletzungsrisiko sehr häufig gestellt wird, möchte ich diese mit einem Unfallfreicounter beantworten.
+                </span>
+                <span>Unverletzt seit:</span>
+              </p>
+              <TheCounter :date="'2014-08-14'" />
+          </aside>
         </article>
       </section>
     </div>
@@ -80,17 +74,18 @@
             <h3>Planung</h3>
             <ul>
               <li>Konzeption von Projekten</li>
-              <li>Figma zur grundlegenden Struktur</li>
-              <li>präzise Screendesigns</li>
+              <li>Sketches & Wireframes zur grundlegenden Struktur</li>
+              <li>Erarbeitung von UX & UI Design</li>
+              <li>Figma für präzise Screendesigns</li>
             </ul>
           </div>
 
           <div class="line" :class="[isVisible ? 'active' : '']">
             <h3>Frontend</h3>
             <ul>
-              <li>übersichtliche HTML Strukturen</li>
+              <li>übersichtliche HTML & CSS Strukturen</li>
               <li>Animationen und Features in nativem JavaScript, JQuery und GreenSocket</li>
-              <li>performante Lösungen für (progressive) Web Apps in VueJS</li>
+              <li>performante Lösungen mit VueJS</li>
             </ul>
           </div>
 
@@ -115,9 +110,11 @@
           <div class="reference gap">
             <h3>Title</h3>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Provident ex quia voluptatem! Ratione inventore mollitia laborum.</p>
+
+            <router-link to="/reference" title="Referenz">Mehr Erfahren!</router-link>
           </div>
 
-          <Picture :src="'Florian_Glaeser.jpg'" :alt="'Projektvorschau des Portfolios'" :title="'Projektvorschau'" />
+          <Picture class="spacing" :src="'Florian_Glaeser.jpg'" :alt="'Projektvorschau des Portfolios'" :title="'Projektvorschau'" />
         </article>
       </div>
     </section>
@@ -127,7 +124,7 @@
         <h2>Contact</h2>
       </header>
       <article>
-        <TheContact />
+        <TheContact class="spacing" />
       </article>
     </section>
   </div>
@@ -166,18 +163,6 @@ export default {
         this.isVisible = true;
       }
     },
-
-    // handleScroll(event) {
-    //   if( window.pageYOffset > 650 ) {
-    //     this.isScrolled = true;
-    //   } else {
-    //     this.isScrolled = false;
-    //   }
-    // },
-
-    // onScroll(e) {
-    //   this.windowTop = e.target.documentElement.scrollTop;
-    // },
   },
   mounted() {
     window.addEventListener("scroll", this.onScroll);
@@ -211,6 +196,7 @@ section {
   h2 {
     text-transform: uppercase;
     font-weight: 400;
+    font-size: 32px;
     letter-spacing: 0.05em;
     margin-bottom: 1rem;
   }
@@ -234,6 +220,12 @@ section {
       padding: 10vh 1.25rem;
     }
 
+    @media only screen and (min-width: 850px) {
+      .spacing {
+        margin: 0 1rem;
+      }
+    }
+
     span {
       display: block;
       margin-bottom: 10px;
@@ -245,14 +237,10 @@ section {
 
     .info, .balancing, .reference {
       display: inline-block;
-      width: 700px;
+      width: 530px;
     }
 
     .balancing {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-evenly;
-
       .counter {
         margin-top: 2rem;
       }

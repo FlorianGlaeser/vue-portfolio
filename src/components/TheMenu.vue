@@ -171,7 +171,6 @@ export default {
       } else {
         if( this.$route.path != '/' ) {
           this.$router.push('/#'+target);
-          // this.$router.push({name: 'Home', hash: '#'+target});
         }
       }
     },
@@ -291,14 +290,6 @@ export default {
     box-shadow: rgb(0, 0, 0) 4px 4px 16px -8px;
     position: relative;
     z-index: 999;
-
-    // &::after {
-    //   content: "";
-    //   display: block;
-    //   height: 4px;
-    //   // width: 50%;
-    //   // background-color: red;
-    // }
 
     .menu-list-mobile {
       background-color: #48525e;
@@ -438,7 +429,6 @@ export default {
 
           a {
             display: inline-block;
-            // color: var(--gray);
             font-size: 3rem;
             &:hover {
               color: white;

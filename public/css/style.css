@@ -1,17 +1,17 @@
 :root {
   /** --------------- FONTS --------------- **/
   --font-light: #a2abb7; /* default [ #a2abb7 ] */
-  --font-dark: #2c3e50; /* default [ #2c3e50 ] */
-  /* blue? #9ba4c1 */
+  --font-dark:  #2c3e50; /* default [ #2c3e50 ] */
+  --font-blue:  #9ba4c1; /* default [ #9ba4c1 ] */
   
   /* gray */
   --gray-lighter: #f2f2f2;
   --gray-light: 	#ccc;
-  --gray-dark: 	#333;
+  --gray-dark: 	  #333;
   
   /* red */
-  --red-light: 	#FF6666; /* erro border [ #FF6666 ] */
-  --red-dark: 	#9F0000; /* erro text [ #FF6666 ] */
+  --red-light: #FF6666; /* error border [ #FF6666 ] */
+  --red-dark:  #9F0000; /* error text [ #FF6666 ] */
   
   /* green */
   --green-light:	#5cb68c;
@@ -21,7 +21,7 @@
   --blue-light: 	#0099FF; /* Links [ #0099FF ] */
   
   /** --------------- BACKROUNDS --------------- **/
-  --bg-main:		#bbb; /* main Backround [ #bbb ] */
+  --bg-main: #bbb; /* main Backround [ #bbb ] */
   
   /* dark - Backrounds */
   --bg-light-blue: #293743;
@@ -29,7 +29,7 @@
   
   /* light - Backrounds */
   --bg-light: 	rgba(255,255,255,0.5);
-  --bg-lighter:   rgba(170,170,170,0.7);
+  --bg-lighter: rgba(170,170,170,0.7);
   
 }
 

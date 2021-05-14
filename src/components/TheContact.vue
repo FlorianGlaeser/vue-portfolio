@@ -2,9 +2,8 @@
   <div class="contact">
     <div>
       <p>
-        <!-- <span>Lass uns loslegen.</span> -->
-        <span>Schön, von Dir(Ihnen) zu hören.</span>
-        <span>Wenn Sie Fragen haben oder einfach nur Hallo sagen möchten, setzen Sie sich gern mit mir in Verbindung und kontaktieren Sie mich.</span>
+        <span>Schön, von Dir zu hören.</span>
+        <span>Wenn Du Fragen hast oder einfach nur Hallo sagen möchten, setz Dich gern mit mir in Verbindung und kontaktiere mich.</span>
       </p>
     </div>
     <div>
@@ -252,7 +251,6 @@ export default {
 
       setTimeout(function() {
         event.style.height = 'auto';
-        // event.style.cssText = '-moz-box-sizing:content-box';
         if( rows <= 1 ) {
           eventOffsetParent.style.height = '50px';
         } else {
@@ -486,8 +484,6 @@ export default {
       left: 0;
       height: 100%;
       width: 100%;
-      // border-bottom: 1px solid #797979;
-      // background-color: #2f2f2f;
       border-bottom: 1px solid #a2abb7;
       background-color: #48525e;
       cursor: pointer;
@@ -544,7 +540,6 @@ export default {
       .label {
         position: relative;
         display: inline-block;
-        // color: #6a6a6a;
         padding: 16px 40px;
         line-height: 1rem;
         transform-origin: 0 50% 0;
@@ -597,7 +592,6 @@ export default {
         height: 100%;
         font-family: 'Roboto', Arial, sans-serif;
         font-weight: 700;
-        // color: #797979;
         color: #a2abb7;
         border: none;
         line-height: 100%;
@@ -679,7 +673,6 @@ export default {
         width: 0%;
         height: 100%;
         background-color: rgba(0,0,0,.2);
-        // transition: width 2s linear;
         transition-property: width;
         transition-duration: 2s;
         transition-timing-function: linear;

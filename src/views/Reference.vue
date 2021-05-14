@@ -11,6 +11,6 @@ import TheMenu from '@/components/TheMenu';
 export default {
   components: {
     TheMenu,
-  }  ,
+  },
 };
 </script>
