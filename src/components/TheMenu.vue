@@ -11,19 +11,19 @@
       <div class="wapper-page menu-list">
         <ul ref="links" class="container-page">
           <li>
-            <a href="/#app" @click="scrollToDiv($event, 'app')">Home</a>
+            <a href="/#app" @click="scrollToDiv($event, 'app')">Impression</a>
           </li>
           <li>
-            <a href="/#about" @click="scrollToDiv($event, 'about')">About</a>
+            <a href="/#about" @click="scrollToDiv($event, 'about')">Über Mich</a>
           </li>
           <li>
-            <a href="/#skills" @click="scrollToDiv($event, 'skills')">Skills</a>
+            <a href="/#skills" @click="scrollToDiv($event, 'skills')">Fähigkeiten</a>
           </li>
           <li>
-            <a href="/#work" @click="scrollToDiv($event, 'work')">Work</a>
+            <a href="/#work" @click="scrollToDiv($event, 'work')">Referenz</a>
           </li>
           <li>
-            <a href="/#contact" @click="scrollToDiv($event, 'contact')">Contact</a>
+            <a href="/#contact" @click="scrollToDiv($event, 'contact')">Kontakt</a>
           </li>
         </ul>
       </div>

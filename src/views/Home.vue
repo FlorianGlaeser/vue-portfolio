@@ -104,24 +104,25 @@
     <section id="work" class="wapper-page">
       <div class="container-page">
         <header>
-          <h2>Referenzen</h2>
+          <h2>Referenz</h2>
         </header>
         <article>
           <div class="reference gap">
-            <h3>Title</h3>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Provident ex quia voluptatem! Ratione inventore mollitia laborum.</p>
+            <h3>Entstehung und Gedankengang des Portfolios</h3>
+            <p>
+              In diesem Bereich möchte ich auf die Entstehung des Portfolios und einzelner Coding-Entscheidungen eingehen.
+              Ich möchte hiermit ein Teil meines aktuellen Wissenstands widerspiegeln, damit Du es einfacher hast, mich einzuschätzen.
+            </p>
 
-            <router-link to="/reference" title="Referenz">Mehr Erfahren!</router-link>
+            <router-link to="/reference" title="Referenz">Mehr Erfahren...</router-link>
           </div>
-
-          <Picture class="spacing" :src="'Florian_Glaeser.jpg'" :alt="'Projektvorschau des Portfolios'" :title="'Projektvorschau'" />
         </article>
       </div>
     </section>
 
     <section id="contact">
       <header>
-        <h2>Contact</h2>
+        <h2>Kontakt</h2>
       </header>
       <article>
         <TheContact class="spacing" />
@@ -271,6 +272,22 @@ section {
     top: -1px;
   }
 
+  &#work {
+    align-items: center;
+
+    a {
+      color: var(--font-light);
+      display: inline-block;
+      text-decoration: none;
+      padding: 12px 10px 10px 0;
+
+      &:hover {
+        color: var(--font-dark);
+        text-decoration: underline;
+      }
+    }
+  }
+
   &#skills {
     align-items: center;
 
@@ -281,12 +298,11 @@ section {
       display: grid;
       grid-template-columns: repeat(1, minmax(auto, 100%));
 
-      @media only screen and (min-width: 850px) {
+      @media only screen and (min-width: 1000px) {
         grid-template-columns: repeat(3, minmax(33.3%, 33.3%));
       }
 
       div {
-        font-size: 1rem;
         letter-spacing: 0.05em;
         padding: 2rem 0;
 
@@ -294,12 +310,8 @@ section {
           padding: 2rem 4rem;
         }
 
-        @media only screen and (min-width: 850px) {
+        @media only screen and (min-width: 1000px) {
           padding: 2rem 0;
-        }
-
-        @media only screen and (min-width: 1400px) {
-          font-size: 1.25rem;
         }
 
         h3 {
@@ -350,7 +362,7 @@ section {
               bottom: 0;
             }
 
-            @media only screen and (min-width: 850px) {
+            @media only screen and (min-width: 1000px) {
               &::before {
                 animation: AnimationLineHeight 1.3s ease forwards;
                 background-color: var(--font-light);

@@ -53,5 +53,9 @@ body {
     opacity: 0;
     transform: translateY(-10px);
   }
+
+  @media only screen and (min-width: 1500px) {
+    font-size: 1.25rem;
+  }
 }
 </style>
