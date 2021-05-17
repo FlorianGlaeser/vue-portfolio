@@ -17,7 +17,10 @@ Vue.use(VueScrollReveal, {
   mobile: false
 });
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
+Vue.config.devtools = false;
+Vue.config.silent = true;
+Vue.config.debug = false;
 
 new Vue({
   router,

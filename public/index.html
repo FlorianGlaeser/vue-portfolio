@@ -4,14 +4,58 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title><%= htmlWebpackPlugin.options.title %></title>
+
+    <meta http-equiv="content-Language" content="de">
+    <meta name="description" content="Ich bin Florian, Front-End Entwickler aus Leipzig, lernen Sie mich jetzt kennen!">
+    <meta name="author" content="Florian Gläser">
+    <meta name="publisher" content="Florian Gläser">
+
+    <link rel="icon" href="<%= BASE_URL %>favicons/favicon.svg">
+    <!--[if IE]><link rel="shortcut icon" type="image/vnd.microsoft.icon" href="<%= BASE_URL %>favicons/favicon.ico"><![endif]-->
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="<%= BASE_URL %>favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="<%= BASE_URL %>favicons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="160x160" href="<%= BASE_URL %>favicons/favicon-160x160.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="<%= BASE_URL %>favicons/favicon-192x192.png">
+    
+    <link rel="apple-touch-icon-precomposed" href="<%= BASE_URL %>favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" href="<%= BASE_URL %>favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="<%= BASE_URL %>favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="<%= BASE_URL %>favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="<%= BASE_URL %>favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="<%= BASE_URL %>favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="<%= BASE_URL %>favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="<%= BASE_URL %>favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="<%= BASE_URL %>favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="<%= BASE_URL %>favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="<%= BASE_URL %>favicons/apple-touch-icon-180x180.png">
+    
+    <meta name="application-name" content="florianglaeser.de">
+    <meta name="msapplication-TileImage" content="<%= BASE_URL %>favicons/win-icon.png">
+    <meta name="msapplication-TileColor" content="#58595b">
+    
+    <meta property="og:description" content="Ich bin Florian, Front-End Entwickler aus Leipzig, lernen Sie mich jetzt kennen!">
+    <meta property="og:image" content="<%= BASE_URL %>favicons/fg_logo.png">
+
+    <meta name="theme-color" content="#ffffff">
+    <link rel="manifest" href="<%= BASE_URL %>favicons/site.webmanifest">
+
+    <title>Webdesign &amp; Development – Florian Gläser</title>
     <link href="<%= BASE_URL %>css/style.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
   </head>
   <body>
     <noscript>
-      <strong>Please enable your JavaScript for the full experience.</strong>
+      <div style="overflow: hidden">
+        <strong>Please enable your JavaScript for the full experience.</strong>
+  
+        <div style="height: 90vh; width: 100vw; display: flex; justify-content: center; align-items: center;">
+          <p style="text-align: center;">
+            Leider funktioniert diese Website nicht ohne JavaScript.<br>
+            Sie können mich trotzdem unter der E-Mail <a style="color: #ff6e48;" href="mailto:kontakt@florianglaeser.de">kontakt@florianglaeser.de</a> erreichen.
+          </p>
+        </div>
+      </div>
     </noscript>
     <div id="app"></div>
   </body>

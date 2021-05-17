@@ -1,0 +1,6 @@
+# robots.txt file for florianglaeser.de
+
+User-agent: *
+Disallow: /impressum
+Disallow: /datenschutz
+Crawl-delay: 60
