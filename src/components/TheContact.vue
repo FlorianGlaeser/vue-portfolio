@@ -311,7 +311,7 @@ export default {
             mailPackage[name] = this.form[x].value;
           }
 
-          axios.post('http://localhost:8000/sendmail.php', mailPackage)
+          axios.post('http://florianglaeser.de/sendmail.php', mailPackage)
           .then( response => {
             if( response.data ) {
               let alert = response.data;
