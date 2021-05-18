@@ -14,7 +14,7 @@ Vue.use(VueScrollReveal, {
   delay: 200,
   scale: 1,
   distance: '10px',
-  mobile: false
+  mobile: true
 });
 
 Vue.config.productionTip = false;

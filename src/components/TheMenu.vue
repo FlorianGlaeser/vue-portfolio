@@ -294,7 +294,7 @@ export default {
     .menu-list-mobile {
       background-color: #48525e;
 
-      @media only screen and (min-width: 655px) {
+      @media only screen and (min-width: 870px) {
         display: none;
       }
 
@@ -336,7 +336,7 @@ export default {
         list-style-type: none;
         padding: 30px;
         
-        @media only screen and (min-width: 655px) {
+        @media only screen and (min-width: 870px) {
           display: block;
         }
 
@@ -429,7 +429,7 @@ export default {
 
           a {
             display: inline-block;
-            font-size: 3rem;
+            font-size: 2rem;
             &:hover {
               color: white;
             }

@@ -90,8 +90,12 @@ footer {
       text-align: center;
       text-transform: uppercase;
       position: relative;
-      font-size: 42px;
+      font-size: 2rem;
       margin: 50px 0;
+
+      @media only screen and (min-width: 600px) {
+        font-size: 2.6rem;
+      }
 
       &::after, &::before {
         position: absolute;
