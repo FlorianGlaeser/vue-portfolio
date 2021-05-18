@@ -24,8 +24,8 @@
                 <label :class="[isVisible ? 'typed' : '']" :for="tag.name">{{ tag.label }}</label>
             </div>
             <i :class="tag.icon" />
-            <input :type="tag.type" :name="tag.name" ref="someFocus" maxlength="100" tabindex="-1" @keydown="setCheckTimer()" v-model="tag.value" v-if="tag.tag == 'input'">
-            <textarea :name="tag.name" ref="someFocus" maxlength="800" tabindex="-1" @keydown="textareaRow($event.target), setCheckTimer()" v-model="tag.value" v-else-if="tag.tag == 'textarea'"></textarea>
+            <input :type="tag.type" :name="tag.name" ref="someFocus" maxlength="100" tabindex="-1" autocomplete="off" @keydown="setCheckTimer()" v-model="tag.value" v-if="tag.tag == 'input'">
+            <textarea :name="tag.name" ref="someFocus" maxlength="800" tabindex="-1" autocomplete="off" @keydown="textareaRow($event.target), setCheckTimer()" v-model="tag.value" v-else-if="tag.tag == 'textarea'"></textarea>
           </div>
           <div class="messageLeange" v-if="form[sequence].tag == 'textarea'">{{ messageLeange() }}</div>
         </div>
