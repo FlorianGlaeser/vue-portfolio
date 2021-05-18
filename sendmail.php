@@ -1,5 +1,5 @@
 <?php
-header('Access-Control-Allow-Origin: http://localhost:8080');
+header('Access-Control-Allow-Origin: http://florianglaeser.de/');
 header('Access-Control-Allow-Headers: x-requested-with, content-type');
 header('Access-Control-Allow-Methods: POST');
 header('content-type: application/json');
@@ -34,19 +34,13 @@ $patternMessage = "/^[a-zA-Z0-9äöüÄÖÜß!\'#$%&*+\/=?^_`{|}~ ,\.\n-]{1,800}
 $validatedMessage = preg_match($patternMessage, $message);
 
 if( $validatedName && $validatedEmail && $validatedMessage ) {
-
-  // $send = 'J3pTh@web.de';
-	
-  // $header[] = 'From: GlaserFlorian <J3pTh@web.de>';
-  // $header[] = 'Reply-To: '. $email;
-  // $header[] = 'MIME-Version: 1.0';
-  // $header[] = 'Content-type: text/html; charset=utf-8';
-
-  // mail($send, $name, $message, implode("\r\n", $header));
-
-  // if( mail ) {
-  // } else {
-  // }
+  $send = 'kontakt@florianglaeser.de';
+  $header[] = 'From: FlorianGlaser <kontakt@florianglaeser.de>';
+  $header[] = 'Reply-To: '. $email;
+  $header[] = 'MIME-Version: 1.0';
+  $header[] = 'Content-type: text/html; charset=utf-8';
+  
+  mail($send, $name, $message, implode("\r\n", $header));
 
   $alert = [
     'status' => true,
