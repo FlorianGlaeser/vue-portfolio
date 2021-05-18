@@ -36,9 +36,13 @@ import TheHeader from "@/components/TheHeader";
 import TheMenu from '@/components/TheMenu';
 
 export default {
+  name: "Reference",
   components: {
     TheHeader,
     TheMenu,
+  },
+  metaInfo: {
+    title: 'Referenz – Webdesign & Development',
   },
 };
 </script>

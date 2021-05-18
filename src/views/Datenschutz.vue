@@ -61,6 +61,12 @@ export default {
     TheHeader,
     TheMenu,
   },
+  metaInfo: {
+    title: 'Datenschutz – Webdesign & Development',
+    meta: [
+      { name: 'robots', content: 'noindex' }
+    ],
+  },
 };
 </script>
 

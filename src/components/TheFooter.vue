@@ -26,7 +26,7 @@
               </a>
             </li>
             <li>
-              <a href="/" title="LinkedIn" class="icon-wrapper" target="_blank">
+              <a href="https://de.linkedin.com/" title="LinkedIn" class="icon-wrapper" target="_blank">
                 <i class="icon-linkedin" />
               </a>
             </li>
@@ -48,10 +48,10 @@
     <div id="footer-bottom">
       <ul>
         <li>
-          <router-link to="/impressum" title="Impressum">Impressum</router-link>
+          <router-link to="/impressum" rel=”nofollow” title="Impressum">Impressum</router-link>
         </li>
         <li>
-          <router-link to="/datenschutz" title="Datenschutz">Datenschutz</router-link>
+          <router-link to="/datenschutz" rel=”nofollow” title="Datenschutz">Datenschutz</router-link>
         </li>
       </ul>
       <span>Copyright © {{ new Date().getFullYear() }} florianglaeser</span>

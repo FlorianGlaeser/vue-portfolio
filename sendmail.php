@@ -1,3 +1,5 @@
+<meta name="robots" content="noindex">
+
 <?php
 header('Access-Control-Allow-Origin: http://localhost:8080');
 header('Access-Control-Allow-Headers: x-requested-with, content-type');

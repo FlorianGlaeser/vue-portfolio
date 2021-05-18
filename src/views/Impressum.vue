@@ -47,6 +47,12 @@ export default {
     TheHeader,
     TheMenu,
   },
+  metaInfo: {
+    title: 'Impressum – Webdesign & Development',
+    meta: [
+      { name: 'robots', content: 'noindex' }
+    ],
+  },
 };
 </script>
 

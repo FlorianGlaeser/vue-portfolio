@@ -147,6 +147,9 @@ export default {
     Picture,
     TheContact,
   },
+  metaInfo: {
+    title: 'Webdesign & Development – Florian Gläser',
+  },
   data() {
     return {
       isScrolled: false,
