@@ -26,7 +26,7 @@
               </a>
             </li>
             <li>
-              <a href="https://www.linkedin.com/in/florianGlaeser/" title="LinkedIn" class="icon-wrapper" target="_blank">
+              <a href="https://www.linkedin.com/in/florianGlaeser" title="LinkedIn" class="icon-wrapper" target="_blank">
                 <i class="icon-linkedin" />
               </a>
             </li>
