@@ -111,7 +111,7 @@
             <h3>Entstehung und Gedankengang des Portfolios</h3>
             <p>
               In diesem Bereich möchte ich auf die Entstehung des Portfolios und einzelner Coding-Entscheidungen eingehen.
-              Ich möchte hiermit ein Teil meines aktuellen Wissenstands widerspiegeln, damit Du es einfacher hast, mich einzuschätzen.
+              Ich möchte hiermit ein Teil meines aktuellen Wissensstands widerspiegeln, damit Du es einfacher hast, mich einzuschätzen.
             </p>
 
             <router-link to="/reference" title="Referenz">Mehr Erfahren...</router-link>

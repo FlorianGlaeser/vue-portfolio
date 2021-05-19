@@ -15,7 +15,7 @@
             <p>
               <span>
                 In diesem Bereich möchte ich auf die Entstehung des Portfolios und einzelner Coding-Entscheidungen eingehen.
-                Ich möchte hiermit ein Teil meines aktuellen Wissenstands widerspiegeln, damit Du es einfacher hast, mich einzuschätzen.
+                Ich möchte hiermit ein Teil meines aktuellen Wissensstands widerspiegeln, damit Du es einfacher hast, mich einzuschätzen.
               </span>
               <span>
                 Für diesen Zweck halte ich es für ein tolles Projekt, ein Portfolio in VueJS umzusetzen.
