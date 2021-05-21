@@ -1,19 +1,20 @@
 # vue-portfolio
 
-## Project setup
-```
-npm install
-```
+## 🏗 Built With
+* [Vue.js](http://vuejs.org/)
+* [Vuex](https://vuex.vuejs.org/)
+* [vue-meta](https://github.com/nuxt/vue-meta)
+* [vue-router](https://router.vuejs.org/)
+* [node-sass](https://github.com/sass/node-sass)
+* [vue-scroll-reveal](https://github.com/tserkov/vue-scroll-reveal#readme)
+* [axios](https://github.com/axios/axios)
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Serving
 
-### Compiles and minifies for production
-```
-npm run build
-```
+Needed for the E-mail Form.
+Use the standard php server.
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+```sh
+# just serve the directory like localhost:8000
+php commandline Serving: php -S localhost:8000 -t .
+```
