@@ -9,7 +9,7 @@
 * [vue-scroll-reveal](https://github.com/tserkov/vue-scroll-reveal#readme)
 * [axios](https://github.com/axios/axios)
 
-## Serving
+## 🚀 Serving
 
 Needed for the E-mail Form.
 Use the standard php server.

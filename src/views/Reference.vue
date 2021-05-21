@@ -22,6 +22,8 @@
               </span>
             </p>
 
+            <a href="https://github.com/FlorianGlaeser/vue-portfolio" title="Code">github.com/FlorianGlaeser/vue-portfolio</a>
+
             <h3>Coming Soon</h3>
           </div>
         </article>
