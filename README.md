@@ -18,3 +18,10 @@ Use the standard php server.
 # just serve the directory like localhost:8000
 php commandline Serving: php -S localhost:8000 -t .
 ```
+
+## 🔨 Todos
+- [ ] Reference text
+- [ ] Global color
+- [ ] Add skill points
+- [ ] Error page
+- [ ] Like function
