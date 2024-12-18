@@ -13,19 +13,16 @@
                 Mein Name ist Florian Gläser.
               </span>
               <span>
-                Ich bin ein Webentwickler aus Leidenschaft im Leipziger Raum.
+                Ich bin Frondend Webentwickler aus Leidenschaft im Leipziger Raum.
               </span>
               <span>
-                Um mein Wissen zu vertiefen, begann ich im April 2018 ein Studium am SAE Institute Leipzig im Fachbereich Webdesign & Development.
-                Im September 2019 erhielt ich dann mein Diploma.
+                Zuletzt habe ich mich mit dem Aufbau generischer UI Komponenten und der Entwicklung von Apps sowie progressiver Webapplikationen beschäftigt.
               </span>
               <span>
-                In meinem Studium habe ich mich sowohl mit den Themengebieten Konzeption/ Design, Frontend-Entwicklung und Animation einer Website,
-                als auch der Backend-Entwicklung in Zusammenhang mit Datenbanken beschäftigt.
+                Hauptsächlich arbeitete ich mit Vue.js in Kombination aus Nuxt.js und Tailwind CSS, da sich mit diesen Tools moderne Webseiten effizient und performant umsetzen lassen.
               </span>
               <span>
-                Hauptsächlich habe ich mit dem Framework Laravel in Kombination mit VueJS gearbeitet,
-                da sich mit diesen Tools moderne Webseiten effizient und performant umsetzen lassen.
+                Meine Kernkompetenzen liegen in der Teamarbeit und Kommunikation, semantischem Coding und im Allgemeinen das Produkt als Ganzes im Blick zu behalten.
               </span>
             </p>
           </div>
@@ -71,30 +68,28 @@
         </header>
         <article class="wrapper-skills">
           <div>
-            <h3>Planung</h3>
+            <h3><p>Software</p><p>Development</p></h3>
             <ul>
-              <li>Konzeption von Projekten</li>
-              <li>Sketches & Wireframes zur grundlegenden Struktur</li>
-              <li>Erarbeitung von UX & UI Design</li>
-              <li>Figma für präzise Screendesigns</li>
+              <li>Erfahrung in funktionaler und OOP Entwicklung</li>
+              <li>JavaScript und TypeScript Programmierspche</li>
+              <li>Entwicklungsalltag mit Bitbucket, Firebase, Docker, GitLab, GitHub, Jira/ Confluence und Scrum-Team</li>
             </ul>
           </div>
 
           <div class="line" :class="[isVisible ? 'active' : '']">
             <h3>Frontend</h3>
             <ul>
-              <li>übersichtliche HTML & CSS Strukturen</li>
-              <li>Animationen und Features in nativem JavaScript, JQuery und GreenSocket</li>
-              <li>performante Lösungen mit VueJS</li>
+              <li>Leidenschaft für UI/UX</li>
+              <li>Über 3 Jahre Entwicklungserfahrung in HTML, CSS, Tailwind CSS, Vue.js und Nuxt.js Frameworks</li>
+              <li>Komplexe und performante Animationen</li>
             </ul>
           </div>
 
           <div>
-            <h3>Backend</h3>
+            <h3>Mobile</h3>
             <ul>
-              <li>umfangreiche Funktionalität in PHP</li>
-              <li>Verwendung von MySQL Datenbanken</li>
-              <li>effizientes Arbeiten mit Laravel</li>
+              <li>Erfahrung in der Entwicklung progressiver Webapplikationen und plattformübergreifender Lösungen</li>
+              <li>Verwendung des Ionic frameworks mit Android Studio und Xcode</li>
             </ul>
           </div>
         </article>
@@ -110,11 +105,11 @@
           <div class="reference gap">
             <h3>Entstehung und Gedankengang des Portfolios</h3>
             <p>
-              In diesem Bereich möchte ich auf die Entstehung des Portfolios und einzelner Coding-Entscheidungen eingehen.
-              Ich möchte hiermit ein Teil meines aktuellen Wissensstands widerspiegeln, damit Du es einfacher hast, mich einzuschätzen.
+              In diesem Bereich möchte ich auf das Portfolio selbst als Projekt eingehen.
+              Ich möchte einen Teil meines Wissensstands veranschaulichen, damit Du es einfacher hast, mich einzuschätzen.
             </p>
 
-            <router-link to="/reference" title="Referenz">Mehr Erfahren...</router-link>
+            <router-link to="/reference/#explanation" title="Referenz">Mehr erfahren ...</router-link>
           </div>
         </article>
       </div>
@@ -279,7 +274,7 @@ section {
     align-items: center;
 
     a {
-      color: var(--font-light);
+      color: var(--font-blue);
       display: inline-block;
       text-decoration: none;
       padding: 12px 10px 10px 0;
@@ -371,7 +366,7 @@ section {
                 background-color: var(--font-light);
                 top: 0;
                 left: 0;
-                width: 4px;
+                width: 1px;
               }
               &::after {
                 animation: AnimationLineHeight 1.3s ease forwards;
@@ -379,7 +374,7 @@ section {
                 top: 0;
                 right: 0;
                 left: unset;
-                width: 4px;
+                width: 1px;
               }  
             }
 
