@@ -45,26 +45,33 @@ export default {
   },
   methods: {
     DateDifferenceArray(DateString) {
-      let insetDate = new Date(DateString);
-      let currentDate = new Date();
+      const start = new Date(DateString);
+      const now = new Date();
 
-      let JJ = currentDate.getFullYear() - insetDate.getFullYear() - 1;
-      let MM = (12 - insetDate.getMonth()) + currentDate.getMonth();
-      let DD = (31 - insetDate.getDate()) + currentDate.getDate();
-        if( DD > 31 ) {
-          DD = DD - 31;
-        } else {
-          MM = MM - 1;
-        }
-      let DateArray = [JJ, MM, DD];
+      // Calculate years, months and days
+      let years = now.getFullYear() - start.getFullYear();
+      let months = now.getMonth() - start.getMonth();
+      let days = now.getDate() - start.getDate();
 
-      // change to standard norm
+      // Correct months and years if necessary
+      if (days < 0) {
+        months -= 1;
+        const previousMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+        days += previousMonth.getDate();
+      }
+      if (months < 0) {
+        years -= 1;
+        months += 12;
+      }
+
+      // Result
+      let DateArray = [years, months, days];
+
+      // Formatting with two-digit values
       for (let index=0; index < DateArray.length; index++) {
         DateArray[index] =  String( Math.abs( DateArray[index] ) ).padStart(2, '0');
       }
 
-      // split in separate numbers
-      // this.dateNumbersSplit = DateArray.join('').split('');
       return DateArray;
     },
   },
